@@ -1,0 +1,9 @@
+---
+- name: Install Required Packages | Homebrew
+  homebrew_cask: name=omnifocus state=present
+  when: ansible_distribution == 'MacOSX'
+
+- name: Add OmniFocus to Dock
+  shell: dockutil --find 'OmniFocus' || dockutil --add '~/Applications/Omnifocus.app'
+  changed_when: False
+  when: ansible_distribution == 'MacOSX'

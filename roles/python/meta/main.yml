@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: Christopher H. Laco
+  description: Install and configure Python
+  license: MIT
+  min_ansible_version: 2.0
+  platforms:
+    - name: Darwin
+      versions:
+        - all
+  categories:
+    - development
+    - system
+dependencies:
+  - { role: pyenv, tags: pyenv, pyenv_default_packages: '{{ python_default_packages }}' }

@@ -1,0 +1,10 @@
+---
+- name: load git configs
+  shell: ls *
+  args:
+    chdir: '{{ git_config_directory }}'
+  register: git_config_files
+  changed_when: False
+
+- name: reconfigure git
+  template: src=gitconfig.j2 dest={{ git_config_file }}

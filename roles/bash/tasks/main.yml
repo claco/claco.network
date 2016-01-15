@@ -1,0 +1,43 @@
+---
+- name: Install Required Packages | Homebrew
+  package: name={{ item }} state=latest
+  with_items: bash_required_packages[ansible_distribution | lower] | default([])
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install Required Packages | Packages
+  package: name={{ item }} state=latest
+  become: yes
+  with_items: bash_required_packages[ansible_distribution | lower] | default([])
+  when: ansible_distribution != 'MacOSX'
+
+- name: Create Bash Completion Directory
+  file: name={{ bash_completion_directory }} state=directory
+  tags: bash-config
+
+- name: Create Bash Profile Directory
+  file: name={{ bash_profile_directory }} state=directory
+  tags: bash-config
+
+- name: Configure Bash Profile
+  template: src=bash_profile.j2 dest={{ bash_profile_file }}
+  tags: bash-config
+
+- name: Configure Bash Profile.d
+  template: src=bash_profile.d/{{ item }}.j2 dest={{ bash_profile_directory }}/{{ item }}
+  tags: bash-config
+  with_items:
+    - alias
+    - export
+    - prompt
+
+- name: Configure Bash Logout
+  template: src=bash_logout.j2 dest={{ bash_logout_file }}
+  tags: bash-config
+
+- name: Configure Bash RC
+  template: src=bashrc.j2 dest={{ bash_rc_file }}
+  tags: bash-config
+
+- name: Configure Input RC
+  template: src=inputrc.j2 dest={{ bash_inputrc_file }}
+  tags: bash-config

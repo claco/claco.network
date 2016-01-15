@@ -1,0 +1,74 @@
+# {{ ansible_managed }}
+
+set -g default-terminal "screen-256color"
+# set-option -g default-shell bash
+
+set-window-option -g utf8 on
+set -g set-titles on
+set -g set-titles-string "#I) #W"
+set -g history-limit 100000
+
+setw -g utf8 on
+set -g status-utf8 on
+
+bind-key C-a    send-prefix
+bind-key r      source-file {{ tmux_config_file }}
+bind-key C-l    resize-pane -L 5
+bind-key C-h    resize-pane -R 5
+bind-key C-j    resize-pane -D 5
+bind-key C-k    resize-pane -U 5
+
+
+# Ctrl-B is insane
+set -g prefix C-a
+unbind-key C-b
+
+# since 1.9, default us ~
+bind c new-window -c '#{pane_current_path}'
+bind '"' split-window -c '#{pane_current_path}'
+
+# vim's definition of a horizontal/vertical split is reversed from tmux's
+# bind s split-window -v
+# bind v split-window -h
+
+# move around panes with hjkl, as one would in vim after pressing ctrl-w
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# tweak the status bar
+set-option -g status on
+set-option -g status-interval 2
+set-option -g status-utf8 on
+set-option -g status-justify centre
+set-option -g status-left-length 60
+set-option -g status-right-length 90
+set-option -g status-left "  #S:#I.#P"
+set-option -g status-right "#h  "
+set -g status-left-attr bold
+set -g status-right-attr bold
+set-option -g status-bg colour3
+set-option -g base-index 1
+set-window-option -g window-status-format ' #I:#W'
+set-window-option -g window-status-current-format ' #I:#W'
+set-window-option -g window-status-current-attr bold
+set-window-option -g pane-base-index 1
+
+
+## Setup 'v' to begin selection as in Vim
+set-window-option -g mode-keys vi
+bind-key -t vi-copy v begin-selection
+{% if ansible_distribution == 'MacOSX' %}
+bind-key -t vi-copy y copy-pipe "pbcopy"
+{% else %}
+bind-key -t vi-copy y copy-selection
+{% endif %}
+
+## Update default binding of `Enter` to also use copy-pipe
+unbind -t vi-copy Enter
+{% if ansible_distribution == 'MacOSX' %}
+bind-key -t vi-copy Enter copy-pipe "pbcopy"
+{% else %}
+bind-key -t vi-copy Enter copy-selection
+{% endif %}

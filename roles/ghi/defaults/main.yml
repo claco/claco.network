@@ -1,0 +1,8 @@
+---
+ghi_bin_directory: '{{ ansible_env.HOME }}/bin'
+ghi_token:
+ghi_required_packages:
+  fedora:
+    - ruby
+  ubuntu:
+    - ruby

@@ -1,0 +1,8 @@
+---
+- name: Install Required Packages | Homebrew
+  homebrew: name=dockutil state=present
+  when: ansible_distribution == 'MacOSX'
+
+- name: Remove Everything From Dock
+  shell: dockutil --remove all
+  changed_when: False

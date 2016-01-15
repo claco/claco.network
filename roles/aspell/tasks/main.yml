@@ -1,0 +1,10 @@
+---
+- name: Install Required Packages | Homebrew
+  homebrew: name=aspell install_options='--with-lang-en' state=present
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install Required Packages | Packages
+  package: name={{ item }} state=latest
+  become: yes
+  with_items: aspell_required_packages[ansible_distribution | lower] | default([])
+  when: ansible_distribution != 'MacOSX'

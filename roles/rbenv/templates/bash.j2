@@ -1,0 +1,6 @@
+# {{ ansible_managed }}
+
+export RBENV_ROOT="{{ rbenv_root_directory}}"
+export PATH="{{ rbenv_bin_directory }}:$PATH"
+
+eval "$(rbenv init -)"

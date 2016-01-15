@@ -1,0 +1,15 @@
+# {{ ansible_managed }}
+
+export FTP_PASSIVE=1
+export FTP_PASSIVE_MODE=1
+{% if ansible_distribution == 'MacOSX' %}
+export EDITOR='mvim -f'
+{% else %}
+export EDITOR='vim'
+{% endif %}
+export COPY_EXTENDED_ATTRIBUTES_DISABLE=true
+export COPYFILE_DISABLE=true
+export PATH={{ ansible_env.HOME }}/bin:/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+{% if ansible_distribution == 'MacOSX' %}
+export CC=/usr/bin/clang
+{% endif %}

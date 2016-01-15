@@ -1,0 +1,37 @@
+# {{ ansible_managed }}
+
+[include]
+{% for file in  git_config_files.stdout_lines %}
+  path = {{ git_config_directory }}/{{ file }}
+{% endfor %}
+
+[core]
+  pager = less -FRSX
+  autocrlf = false
+{% if ansible_distribution == 'MacOSX' %}
+  editor = mvim -f
+{% else %}
+  editor = vim
+{% endif %}
+  whitespace = trailing-space,space-before-tab
+  excludesfile = {{ git_exludes_file }}
+
+[apply]
+  whitespace = error
+
+[color]
+  ui = auto
+
+[push]
+  default = current
+
+[alias]
+  pr = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+  pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
+Raw
+
+[credential]
+  helper = osxkeychain
+
+[commit]
+  gpgsign = true

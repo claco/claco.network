@@ -1,0 +1,24 @@
+---
+- name: Add Solarized Dark Terminal Profile
+  shell: open '{{ solarized_config_directory }}/Solarized Dark.terminal' && sleep 5 && osascript -e 'quit app "Terminal"'
+  changed_when: false
+  ignore_errors: yes
+  tags: terminal-config
+
+- name: Configure Terminal Defaults
+  osx_defaults:
+    domain: com.apple.Terminal
+    key: '{{ item.key }}'
+    type: '{{ item.type }}'
+    value: '{{ item.value }}'
+    state: present
+    dict_add: True
+  with_items: '{{ terminal_defaults.macosx }}'
+  when: ansible_distribution == 'MacOSX'
+  tags: terminal-config
+
+- name: Add Terminal to Dock
+  shell: dockutil --find 'Terminal' || dockutil --add '/Applications/Utilities/Terminal.app'
+  changed_when: False
+  when: ansible_distribution == 'MacOSX'
+  tags: terminal-config

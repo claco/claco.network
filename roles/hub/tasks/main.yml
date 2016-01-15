@@ -1,0 +1,20 @@
+---
+- name: Create Bin Directory
+  file: name={{ hub_bin_directory }} state=directory
+  tags: hub-install
+
+- name: Install Hub | Homebrew
+  package: name=hub state=latest
+  when: ansible_distribution == 'MacOSX'
+  tags: hub-install
+
+- name: Download Hub Package
+  unarchive: src={{ hub_package_url}} dest=/tmp copy=no
+  register: hub_download
+  when: ansible_distribution != 'MacOSX'
+  tags: hub-install
+
+- name: Install Hub | Package
+  shell: cp -f /tmp/hub-linux-amd64-{{ hub_version }}/bin/hub {{ hub_bin_directory }}
+  when: hub_download.changed and ansible_distribution != 'MacOSX'
+  tags: hub-install

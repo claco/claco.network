@@ -1,0 +1,7 @@
+---
+bootstrap_packages:
+  fedora:
+    - python2
+    - python2-dnf
+    - libselinux-python
+    - libsemanage-python

@@ -1,0 +1,8 @@
+---
+aspell_required_packages:
+  fedora:
+    - aspell
+    - aspell-en
+  ubuntu:
+    - aspell
+    - aspell-en

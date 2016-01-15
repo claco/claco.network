@@ -1,0 +1,37 @@
+---
+- name: Install Required Packages | Homebrew
+  package: name={{ item }} state=latest
+  with_items: ruby_required_packages[ansible_distribution | lower] | default([])
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install Required Packages | Packages
+  package: name={{ item }} state=latest
+  become: yes
+  with_items: ruby_required_packages[ansible_distribution | lower] | default([])
+  when: ansible_distribution != 'MacOSX'
+
+- name: Configure Gem
+  template: src=gemrc.j2 dest={{ ruby_gemrc_file }} mode=0600
+  tags: ruby-gem-config
+
+- name: Install Ruby Versions
+  shell: "{{ ruby_install_command }} {{ item }}"
+  args:
+    creates: "{{ ruby_versions_directory }}/{{ item }}"
+  tags: ruby-install
+  with_items: ruby_versions
+  notify: rehash rbenv
+
+- name: Configure Default Version
+  template: src=version.j2 dest={{ rbenv_root_directory }}/version mode=0644
+  when: ruby_default_version is defined
+  tags: ruby-install, ruby-default-version
+  notify: rehash rbenv
+
+- name: Install Default Gems
+  gem: name={{ item[1] }} executable={{ rbenv_versions_directory }}/{{ item[0] }}/bin/gem state=latest
+  tags: ruby-install, ruby-default-gems
+  with_nested:
+    - ruby_versions
+    - ruby_default_gems
+  notify: rehash rbenv

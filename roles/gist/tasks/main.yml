@@ -1,0 +1,24 @@
+---
+- name: Install Required Packages
+  package: name={{ item }} state=latest
+  become: yes
+  with_items: gist_required_packages[ansible_distribution | lower] | default([])
+  tags: gist-required-packages
+
+- name: Create Bin Directory
+  file: name={{ gist_bin_directory }} state=directory
+  tags: hub-install
+
+- name: Install Gist | Homebrew
+  package: name=gist state=latest
+  when: ansible_distribution == 'MacOSX'
+  tags: gist-install
+
+- name: Install Gist | Gem
+  gem: name=gist user_install=yes bindir={{ gist_bin_directory }} state=latest
+  when: ansible_distribution != 'MacOSX'
+  tags: gist-install
+
+- name: Configure Gist
+  template: src=gist.j2 dest={{ gist_config_file }} mode=0600
+  tags: gist-config

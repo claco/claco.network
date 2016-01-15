@@ -1,0 +1,19 @@
+---
+git_config_directory: '{{ ansible_env.HOME }}/.gitconfig.d'
+git_config_file: '{{ ansible_env.HOME }}/.gitconfig'
+git_exludes_file: '{{ ansible_env.HOME }}/.gitexcludes'
+git_github_user:
+git_github_token:
+git_required_packages:
+  macosx:
+    - git
+    - git-extras
+    - git-review
+  fedora:
+    - git
+    - git-extras
+    - git-review
+  ubuntu:
+    - git
+    - git-extras
+    - git-review

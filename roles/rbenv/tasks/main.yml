@@ -1,0 +1,24 @@
+---
+- name: Install RbEnv
+  git: repo={{ rbenv_repo_url }} dest={{ rbenv_root_directory }}
+  tags: rbenv-install
+
+- name: Install RbEnv Plugins
+  git: repo={{ item.repo }} dest={{ rbenv_plugins_directory}}/{{ item.dest }}
+  tags: rbenv-install-plugins
+  with_items: rbenv_plugins
+
+- name: Configure Default Gems
+  template: src=default-gems.j2 dest={{ rbenv_root_directory }}/default-gems
+  tags: rbenv-default-gems
+
+- name: Configure Bash Profile
+  template: src=bash.j2 dest={{ bash_profile_directory }}/rbenv
+  tags: rbenv-bash-profile
+
+- name: Configure Bash Completions
+  file:
+    path: '{{ bash_completion_directory }}/rbenv'
+    src: '{{ rbenv_completions_directory }}/rbenv.bash'
+    state: link
+  tags: rbenv-bash-completion

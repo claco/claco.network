@@ -1,0 +1,4 @@
+---
+solarized_config_directory: '{{ ansible_env.HOME }}/.solarized'
+solarized_repository_directory: '{{ solarized_config_directory }}/repository'
+solarized_git_url: https://github.com/altercation/solarized.git

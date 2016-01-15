@@ -1,0 +1,37 @@
+---
+python_pip_config_directory: '{{ ansible_env.HOME}}/.pip'
+python_pip_config_file: '{{ python_pip_config_directory }}/pip.conf'
+python_install_command: '{{ pyenv_binary }} install'
+python_default_packages: []
+python_versions_directory: '{{ pyenv_versions_directory }}'
+python_versions: []
+python_default_version:
+python_required_packages:
+  macosx:
+    - gdbm
+    - libyaml
+    - openssl
+    - sqlite
+    - readline
+  fedora:
+    - zlib-devel
+    - bzip2
+    - bzip2-devel
+    - readline-devel
+    - sqlite
+    - sqlite-devel
+    - openssl-devel
+  ubuntu:
+    - libssl-dev
+    - libyaml-dev
+    - libreadline6-dev
+    - zlib1g-dev
+    - libbz2-dev
+    - libreadline-dev
+    - libncurses5-dev
+    - libncursesw5-dev
+    - libffi-dev
+    - libgdbm3
+    - libgdbm-dev
+    - sqlite3
+    - libsqlite3-dev

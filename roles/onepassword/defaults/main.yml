@@ -1,0 +1,8 @@
+---
+onepassword_config_directory: '{{ ansible_env.HOME }}/.1password'
+onepassword_license_file: '{{ onepassword_config_directory }}/ChristopherH.Laco-9b82fe8b-1f73-4b1f-8a0b-093dde9f0a46.onepassword-license'
+onepassword_license:
+onepassword_defaults:
+  macosx:
+    - { key: ShowRichIcons, value: 1, type: bool }
+    - { key: ShowStatusItem, value: 1, type: bool }

@@ -1,0 +1,9 @@
+---
+- name: Install Required Packages | Homebrew
+  homebrew_cask: name=caffeine state=present
+  when: ansible_distribution == 'MacOSX'
+
+- name: Add Caffeine to Dock
+  shell: dockutil --find 'Caffeine' || dockutil --add '~/Applications/Caffeine.app'
+  changed_when: False
+  when: ansible_distribution == 'MacOSX'

@@ -1,0 +1,35 @@
+---
+- name: Install Required Packages | GEM
+  gem: name={{ item }} state=latest
+  with_items:
+    - pygments.rb
+  when: ansible_distribution == 'MacOSX'
+  tags: ghi-required-packages
+
+- name: Install Required Packages
+  package: name={{ item }} state=latest
+  become: yes
+  with_items: ghi_required_packages[ansible_distribution | lower] | default([])
+  when: ansible_distribution == 'MacOSX'
+  tags: ghi-required-packages
+
+- name: Create Bin Directory
+  file: name={{ ghi_bin_directory }} state=directory
+  tags: hub-install
+
+- name: Install GHI | Homebrew
+  package: name=ghi state=latest
+  when: ansible_distribution == 'MacOSX'
+  tags: ghi-install
+
+- name: Install GHI | Gem
+  gem: name=ghi user_install=yes bindir={{ ghi_bin_directory }} state=latest
+  when: ansible_distribution != 'MacOSX'
+  tags: ghi-install
+
+- name: Configure GHI In Git
+  template: src=ghi.j2 dest='{{ git_config_directory }}/ghi' mode=0600
+  tags: ghi-config
+  notify:
+    - load git configs
+    - reconfigure git

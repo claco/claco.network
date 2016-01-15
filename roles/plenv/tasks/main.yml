@@ -1,0 +1,20 @@
+---
+- name: Install PlEnv
+  git: repo={{ plenv_repo_url }} dest={{ plenv_root_directory }}
+  tags: plenv-install
+
+- name: Install PlEnv Plugins
+  git: repo={{ item.repo }} dest={{ plenv_plugins_directory}}/{{ item.dest }}
+  tags: plenv-install-plugins
+  with_items: plenv_plugins
+
+- name: Configure Bash Profile
+  template: src=bash.j2 dest={{ bash_profile_directory }}/plenv
+  tags: plenv-bash-profile
+
+- name: Configure Bash Completions
+  file:
+    path: '{{ bash_completion_directory }}/plenv'
+    src: '{{ plenv_completions_directory }}/plenv.bash'
+    state: link
+  tags: plenv-bash-completion

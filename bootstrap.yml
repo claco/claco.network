@@ -1,0 +1,6 @@
+---
+- name: Bootstrap Ansible
+  hosts: all
+  tags: bootstrap
+  roles:
+    - { role: bootstrap, tags: bootstrap }

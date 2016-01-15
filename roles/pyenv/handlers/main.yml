@@ -1,0 +1,3 @@
+---
+- name: rehash pyenv
+  shell: '{{ pyenv_bin_directory }}/pyenv rehash'

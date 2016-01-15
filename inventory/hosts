@@ -1,0 +1,9 @@
+[raspberries]
+clearpi ansible_user=pi
+whitepi ansible_user=pi
+blackpi ansible_user=pi
+
+[workstations]
+henchman21
+sniper
+mqr13tg8wl

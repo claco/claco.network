@@ -1,0 +1,8 @@
+[merge]
+  tool = p4merge
+
+[mergetool "p4merge"]
+  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "$BASE" "$REMOTE" "$LOCAL" "$MERGED"
+  keepTemporaries = false
+  trustExitCode = false
+  keepBackup = false

@@ -1,0 +1,25 @@
+---
+perl_tidyrc_file: '{{ ansible_env.HOME }}/.perltidyrc'
+perl_install_command: '{{ plenv_binary }} install'
+perl_versions_directory: '{{ plenv_versions_directory }}'
+perl_versions: []
+perl_default_version:
+perl_default_modules: []
+perl_required_packages:
+  macosx:
+    - libyaml
+    - openssl
+    - readline
+    - sqlite
+  fedora:
+    - openssl-devel
+    - libyaml-devel
+    - readline-devel
+    - sqlite
+    - sqlite-devel
+  ubuntu:
+    - libssl-dev
+    - libyaml-dev
+    - libreadline6-dev
+    - sqlite3
+    - libsqlite3-dev

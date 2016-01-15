@@ -1,0 +1,4 @@
+---
+- include: bootstrap.yml
+- include: workstations.yml
+- include: raspberries.yml

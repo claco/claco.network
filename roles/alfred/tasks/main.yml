@@ -1,0 +1,10 @@
+---
+- name: Install Required Packages | Homebrew
+  homebrew_cask: name=alfred state=present
+  become: yes
+  when: ansible_distribution == 'MacOSX'
+
+- name: Add Alfred to Dock
+  shell: dockutil --find 'Alfred' || dockutil --add '~/Applications/Alfred 2.app'
+  changed_when: False
+  when: ansible_distribution == 'MacOSX'

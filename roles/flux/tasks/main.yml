@@ -1,0 +1,9 @@
+---
+- name: Install Required Packages | Homebrew
+  homebrew_cask: name=flux state=present
+  when: ansible_distribution == 'MacOSX'
+
+- name: Add Flux to Dock
+  shell: dockutil --find 'Flux' || dockutil --add '~/Applications/Flux.app'
+  changed_when: False
+  when: ansible_distribution == 'MacOSX'

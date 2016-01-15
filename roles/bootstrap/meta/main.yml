@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Christopher H. Laco
+  description: Install and configure Ansible prerequisites
+  license: MIT
+  min_ansible_version: 2.0
+  platforms:
+    - name: Fedora
+      versions:
+        - all
+  categories:
+    - development
+    - system
+dependencies: []

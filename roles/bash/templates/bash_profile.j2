@@ -1,0 +1,17 @@
+# {{ ansible_managed }}
+
+if [ -f {{ bash_rc_file }} ]; then
+  source {{ bash_rc_file }}
+fi
+
+PATH=$PATH:$HOME/.local/bin:$HOME/bin
+
+export PATH
+
+for bash_profile in {{ bash_profile_directory }}/*; do
+  source ${bash_profile}
+done
+
+for bash_completion in {{ bash_completion_directory}}/*; do
+  source ${bash_completion}
+done

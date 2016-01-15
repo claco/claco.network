@@ -1,0 +1,10 @@
+---
+- name: Install P4Merge
+  homebrew_cask: name=p4merge state=present
+  tags: p4merge-install
+
+- name: Configure P4Merge In Git
+  template: src=p4merge.j2 dest='{{ git_config_directory }}/p4merge' mode=0600
+  notify:
+    - load git configs
+    - reconfigure git

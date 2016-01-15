@@ -1,0 +1,6 @@
+# {{ ansible_managed }}
+
+export PLENV_ROOT="{{ plenv_root_directory}}"
+export PATH="{{ plenv_bin_directory }}:$PATH"
+
+eval "$(plenv init -)"

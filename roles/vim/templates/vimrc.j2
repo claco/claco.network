@@ -1,0 +1,143 @@
+" {{ ansible_managed }}
+
+set nocompatible
+set encoding=utf-8
+
+filetype off
+filetype plugin indent off
+
+call pathogen#infect()
+call pathogen#helptags()
+
+filetype on
+filetype plugin on
+filetype indent on
+syntax on
+
+set background=dark
+color solarized
+
+set spelllang=en_us
+nmap <silent> <leader>s :set spell!<CR>
+nmap <silent> <leader>h :noh<CR>
+nmap <silent> <leader>tr :NERDTreeToggle<CR>
+nmap <silent> ,t :CommandT<CR>
+
+set noshowmode
+set laststatus=2
+set number
+set numberwidth=4
+set hlsearch
+set incsearch
+set hidden
+set ignorecase
+set nobackup
+set nowb
+set noswapfile
+set cursorline
+set list listchars=tab:>-,trail:.,precedes:<,extends:>
+
+set tabpagemax=20
+set expandtab
+set shiftwidth=2
+set tabstop=2
+set smarttab
+set autoindent
+set visualbell
+set noerrorbells
+set lbr
+
+set ai
+set si
+set nowrap
+
+set backspace=indent,eol,start
+fixdel
+
+let g:airline_powerline_fonts=1
+
+let g:syntastic_python_checkers=['flake8', 'pep8', 'python']
+let g:syntastic_ruby_checkers=[]
+let g:syntastic_yaml_checkers=['jsyaml']
+let g:syntastic_always_populate_loc_list=1
+
+ca ack Ack -Qi
+set grepprg=ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
+set wildignore=doc/*,coverage/*,.yardoc/*,yardoc/*,.git/*
+
+let g:CommandTMaxFiles = 25000
+
+if has("gui_mac") || has("gui_macvim")
+  set lines=45
+  set columns=217
+  set guifont=Inconsolata\ for\ Powerline:h15
+  set transparency=11
+else
+  set clipboard=unnamed
+endif
+
+set guioptions=aAe
+set guioptions-=m
+set guioptions-=T
+
+inoremap <Left>  <NOP>
+inoremap <Right> <NOP>
+inoremap <Up>    <NOP>
+inoremap <Down>  <NOP>
+nnoremap <Left>  <NOP>
+nnoremap <Right> <NOP>
+nnoremap <Up>    <NOP>
+nnoremap <Down>  <NOP>
+
+vnoremap < <gv
+vnoremap > >gv
+
+imap jk <ESC>
+imap kj <ESC>
+imap JK <ESC>
+imap KJ <ESC>
+imap hj <ESC>
+imap jh <ESC>
+imap HJ <ESC>
+imap JH <ESC>
+
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
+autocmd BufNewFile,BufRead *_test.rb setlocal makeprg=m errorformat=%A%>\ \ %n)\ Failure:,%C%m\ [%f:%l]:,%Z
+autocmd BufNewFile,BufRead *_test.rb setlocal makeprg=m errorformat+=%A%>\ \ %n)\ Error:,%C%.%#:,%C%m\ for\ #<%.%#>,%Z\ \ \ \ %f:%l:in\ \`%.%#\',%-G%.%#
+autocmd BufNewFile,BufRead *_spec.rb setlocal makeprg=rspec\ --order\ default errorformat=%A%>\ \ %n)%.%#,%C%>\ \ \ \ \ Failure/Error:%.%#,%C\ \ \ \ \ %m:,%C\ \ \ \ \ \ \ ,%C\ \ \ \ \ \ \ %m,%C\ \ \ \ \ #\ %f:%l:in%.%#,%Z,%-G%.%#
+
+function! RunMake(...)
+  if a:0 == 1
+    echo "Running " . &makeprg . " " . a:1 . "..."
+    silent! exec "make! " . a:1
+  elseif a:0 == 2
+    echo "Running " . &makeprg . " " . a:1 . " -l " . a:2 . "..."
+    silent! exec "make! " . a:1 . " -l " . a:2
+  else
+    echo "Running " . &makeprg . "..."
+    silent! exec "make!"
+  endif
+  redraw!
+  if len(getqflist()) > 0
+    cw
+    redraw!
+    call RedBar('')
+  else
+    ccl
+    redraw!
+    call GreenBar("")
+  endif
+  redraw!
+endfunction
+
+command! TestSuite call RunMake()
+command! TestFile call RunMake(expand('%'))
+command! TestLine call RunMake(expand('%'), line('.'))
+
+nmap \ts :TestSuite<CR>
+nmap \tf :TestFile<CR>
+nmap \tl :TestLine<CR>
+
+au BufRead,BufNewFile *.rabl setf ruby

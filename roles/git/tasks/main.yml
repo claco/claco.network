@@ -1,0 +1,58 @@
+---
+- name: Install Required Packages | Homebrew
+  package: name={{ item }} state=latest
+  with_items: git_required_packages[ansible_distribution | lower] | default([])
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install Required Packages | Packages
+  package: name={{ item }} state=latest
+  become: yes
+  with_items: git_required_packages[ansible_distribution | lower] | default([])
+  when: ansible_distribution != 'MacOSX'
+
+- name: Create Git Configuration Directory
+  file: path={{ git_config_directory }} state=directory mode=0700
+  tags: git-config
+
+- name: Configure Git User Config
+  template: src=user.j2 dest='{{ git_config_directory }}/user' mode=0600
+  tags: git-config, git-config-user
+
+- name: Configure Git Github Config
+  template: src=github.j2 dest='{{ git_config_directory }}/github' mode=0600
+  tags: git-config, git-config-github
+
+- name: Configure Git Review Config
+  template: src=gitreview.j2 dest='{{ git_config_directory }}/gitreview' mode=0600
+  tags: git-config, git-config-user
+
+- name: Load Git Config Files
+  shell: ls *
+  args:
+    chdir: '{{ git_config_directory }}'
+  register: git_config_files
+  changed_when: False
+  tags: git-config
+
+- name: Configure Git
+  template: src=gitconfig.j2 dest={{ git_config_file }} mode=0600
+  tags: git-config
+
+- name: Configure Git Excludes File
+  template: src=gitexcludes.j2 dest={{ git_exludes_file }} mode=0600
+  tags: git-config
+
+- name: Enable Git Auto Completion
+  file:
+    path: '{{ bash_completion_directory }}/git'
+    src: '{% if ansible_distribution == "MacOSX" %}/usr/local/etc/bash_completion.d/git-completion.bash{% else %}/usr/share/doc/git-core-doc/contrib/completion/git-completion.bash{% endif %}'
+    state: link
+  tags: git-config
+
+- name: Enable Git Prompt
+  file:
+    path: '{{ bash_completion_directory }}/git-prompt'
+    src: '{% if ansible_distribution == "MacOSX" %}/usr/local/etc/bash_completion.d/git-prompt.sh{% else %}/usr/share/doc/git-core-doc/contrib/completion/git-prompt.sh{% endif %}'
+    state: link
+  tags: git-config
+

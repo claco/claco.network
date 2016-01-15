@@ -1,0 +1,9 @@
+---
+- name: Install Required Packages | Homebrew
+  homebrew_cask: name=tunnelblick state=present
+  when: ansible_distribution == 'MacOSX'
+
+- name: Add Tunnelblick to Dock
+  shell: dockutil --find 'Tunnelblick' || dockutil --add '~/Applications/Tunnelblick.app'
+  changed_when: False
+  when: ansible_distribution == 'MacOSX'

@@ -1,0 +1,38 @@
+---
+ruby_gemrc_file: '{{ ansible_env.HOME }}/.gemrc'
+ruby_default_gems: []
+ruby_install_command: 'CONFIGURE_OPTS="--disable-install-doc" {{ rbenv_bin_directory }}/rbenv install'
+ruby_versions_directory: '{{ rbenv_versions_directory }}'
+ruby_versions: []
+ruby_default_version:
+ruby_required_packages:
+  macosx:
+    - gdbm
+    - gmp
+    - libffi
+    - libyaml
+    - openssl
+    - readline
+    - sqlite
+  fedora:
+    - bzip2
+    - openssl-devel
+    - libyaml-devel
+    - libffi-devel
+    - readline-devel
+    - zlib-devel
+    - gdbm-devel
+    - ncurses-devel
+    - sqlite
+    - sqlite-devel
+  ubuntu:
+    - libssl-dev
+    - libyaml-dev
+    - libreadline6-dev
+    - zlib1g-dev
+    - libncurses5-dev
+    - libffi-dev
+    - libgdbm3
+    - libgdbm-dev
+    - sqlite3
+    - libsqlite3-dev

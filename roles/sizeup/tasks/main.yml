@@ -1,0 +1,41 @@
+---
+- name: Install Required Packages | Homebrew
+  homebrew_cask: name=sizeup state=present
+  when: ansible_distribution == 'MacOSX'
+
+- name: Create SizeUp Configuration Directory
+  file: name={{ sizeup_config_directory }} state=directory
+  when: ansible_distribution == 'MacOSX'
+  tags: sizeup-config
+
+- name: Copy SizeUp License File
+  shell: echo '{{ sizeup_license }}' | base64 --decode > '{{ sizeup_license_file }}'
+  when: ansible_distribution == 'MacOSX'
+  args:
+    creates: '{{ sizeup_license_file }}'
+  no_log: True
+  tags: sizeup-config
+
+- name: Register SizeUp License
+  shell: sleep 10 && open {{ sizeup_license_file }} && sleep 5 && osascript -e 'quit app "SizeUp"'
+  changed_when: False
+  when: ansible_distribution == 'MacOSX'
+  tags: sizeup-config
+
+- name: Configure SizeUp Defaults
+  osx_defaults:
+    domain: com.irradiatedsoftware.SizeUp
+    key: '{{ item.key }}'
+    type: '{{ item.type }}'
+    value: '{{ item.value }}'
+    state: present
+    dict_add: True
+  with_items: '{{ sizeup_defaults.macosx }}'
+  when: ansible_distribution == 'MacOSX'
+  tags: sizeup-config
+
+- name: Add SizeUp to Dock
+  shell: dockutil --find 'SizeUp' || dockutil --add '~/Applications/SizeUp.app'
+  changed_when: False
+  when: ansible_distribution == 'MacOSX'
+  tags: sizeup-config

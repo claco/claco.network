@@ -1,0 +1,9 @@
+---
+- name: Create Solarized Directory
+  file: name={{ solarized_config_directory }} state=directory
+
+- name: Install Solarized Repository
+  git: repo={{ solarized_git_url }} dest={{ solarized_repository_directory }}
+
+- name: Copy Terminal Profile
+  copy: src='Solarized Dark.terminal' dest='{{ solarized_config_directory }}/Solarized Dark.terminal'

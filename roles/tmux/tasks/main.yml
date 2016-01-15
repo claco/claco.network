@@ -1,0 +1,20 @@
+---
+- name: Install Tmux | Homebrew
+  package: name=tmux state=latest
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install Tmux | Package
+  package: name=tmux state=latest
+  become: yes
+  when: ansible_distribution != 'MacOSX'
+
+- name: Configure Tmux
+  template: src=tmux.conf.j2 dest={{ tmux_config_file }}
+  tags: tmux-config
+
+- name: Enable Tmux Auto Completion
+  file:
+    path: '{{ bash_completion_directory }}/tmux'
+    src: '{% if ansible_distribution == "MacOSX" %}/usr/local/etc/bash_completion.d/tmux{% else %}/usr/share/doc/tmux/examples/bash_completion_tmux.sh{% endif %}'
+    state: link
+  tags: tmux-config

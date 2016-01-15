@@ -1,0 +1,7 @@
+# {{ ansible_managed }}
+
+export PYENV_ROOT="{{ pyenv_root_directory}}"
+export PATH="{{ pyenv_bin_directory }}:$PATH"
+
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

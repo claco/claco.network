@@ -1,0 +1,4 @@
+# {{ ansible_managed }}
+{% for gemspec in rbenv_default_gems %}
+{{ gemspec }}
+{% endfor %}

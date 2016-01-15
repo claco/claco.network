@@ -1,0 +1,5 @@
+---
+- name: install python and deps for ansible modules
+  raw: 'dnf install -y {{ bootstrap_packages[ansible_distribution | lower] | join(" ") }}'
+  become: yes
+  when: ansible_distribution == 'Fedora'

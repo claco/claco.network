@@ -1,0 +1,16 @@
+---
+sizeup_config_directory: '{{ ansible_env.HOME }}/.sizeup'
+sizeup_license_file: '{{ sizeup_config_directory }}/SizeUp.sizeuplicense'
+sizeup_license:
+sizeup_defaults:
+  macosx:
+    - { key: CenterRelativeResizeEnabled, value: 1, type: bool }
+    - { key: CenterResizeType, value: 1, type: int }
+    - { key: CenterRelativeResizeHeight, value: 85, type: int }
+    - { key: CenterRelativeResizeWidth, value: 85, type: int }
+    - { key: ShowOverlay, value: 0, type: bool }
+    - { key: ShowTooltips, value: 0, type: bool }
+    - { key: Lower Left, type: dict, value: {key: ComboFlags, type: int, value: 10092544} }
+    - { key: Lower Right, type: dict, value: {key: ComboFlags, type: int, value: 10092544} }
+    - { key: Upper Left, type: dict, value: {key: ComboFlags, type: int, value: 10092544} }
+    - { key: Upper Right, type: dict, value: {key: ComboFlags, type: int, value: 10092544} }

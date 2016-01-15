@@ -1,0 +1,5 @@
+---
+terminal_defaults:
+  macosx:
+    - { key: Default Window Settings, type: string, value: Solarized Dark }
+    - { key: Startup Window Settings, type: string, value: Solarized Dark }

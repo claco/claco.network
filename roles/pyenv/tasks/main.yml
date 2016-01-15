@@ -1,0 +1,24 @@
+---
+- name: Install PyEnv
+  git: repo={{ pyenv_repo_url }} dest={{ pyenv_root_directory }}
+  tags: pyenv-install
+
+- name: Install PyEnv Plugins
+  git: repo={{ item.repo }} dest={{ pyenv_plugins_directory}}/{{ item.dest }}
+  tags: pyenv-install-plugins
+  with_items: pyenv_plugins
+
+- name: Configure Default Packages
+  template: src=default-packages.j2 dest={{ pyenv_root_directory }}/default-packages
+  tags: pyenv-default-packages
+
+- name: Configure Bash Profile
+  template: src=bash.j2 dest={{ bash_profile_directory }}/pyenv
+  tags: pyenv-bash-profile
+
+- name: Configure Bash Completions
+  file:
+    path: '{{ bash_completion_directory }}/pyenv'
+    src: '{{ pyenv_completions_directory }}/pyenv.bash'
+    state: link
+  tags: pyenv-bash-completion

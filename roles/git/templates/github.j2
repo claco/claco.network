@@ -1,0 +1,4 @@
+[github]
+{% for item in git_github %}
+  {{ item }} = {{ git_github[item] }}
+{% endfor %}

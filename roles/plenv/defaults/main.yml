@@ -1,0 +1,11 @@
+---
+plenv_repo_url: 'https://github.com/tokuhirom/plenv.git'
+plenv_root_directory: '{{ ansible_env.HOME }}/.plenv'
+plenv_bin_directory: '{{ plenv_root_directory }}/bin'
+plenv_binary: '{{ plenv_bin_directory }}/plenv'
+plenv_completions_directory: '{{ plenv_root_directory }}/completions'
+plenv_plugins_directory: '{{ plenv_root_directory }}/plugins'
+plenv_versions_directory: '{{ plenv_root_directory }}/versions'
+plenv_plugins:
+  - { repo: 'https://github.com/tokuhirom/Perl-Build.git', dest: 'perl-build' }
+  - { repo: 'https://github.com/claco/plenv-all', dest: 'plenv-all' }

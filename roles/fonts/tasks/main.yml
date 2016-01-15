@@ -1,0 +1,15 @@
+---
+- name: Add Fonts Cask Tap
+  shell: brew tap caskroom/fonts
+  changed_when: False
+
+- name: Install Required Packages | Homebrew
+  homebrew_cask: name={{ item }} state=present
+  with_items: '{{ fonts_required_packages[ansible_distribution | lower] | default([]) }}'
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install Required Packages | Packages
+  package: name={{ item }} state=latest
+  become: yes
+  with_items: '{{ fonts_required_packages[ansible_distribution | lower] | default([]) }}'
+  when: ansible_distribution != 'MacOSX'

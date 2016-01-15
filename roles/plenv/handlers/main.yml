@@ -1,0 +1,3 @@
+---
+- name: rehash plenv
+  shell: '{{ plenv_bin_directory }}/plenv rehash'

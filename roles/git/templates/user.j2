@@ -1,0 +1,4 @@
+[user]
+{% for item in git_user %}
+  {{ item }} = {{ git_user[item] }}
+{% endfor %}

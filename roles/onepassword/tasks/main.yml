@@ -1,0 +1,41 @@
+---
+- name: Install Required Packages | Homebrew
+  homebrew_cask: name=1password state=present
+  when: ansible_distribution == 'MacOSX'
+
+- name: Create 1Password Configuration Directory
+  file: name={{ onepassword_config_directory }} state=directory
+  when: ansible_distribution == 'MacOSX'
+  tags: onepassword-config
+
+- name: Copy 1Password License File
+  shell: echo '{{ onepassword_license }}' | base64 --decode > '{{ onepassword_license_file }}'
+  when: ansible_distribution == 'MacOSX'
+  args:
+    creates: '{{ onepassword_license_file }}'
+  no_log: True
+  tags: onepassword-config
+
+- name: Register 1Password License
+  shell: sleep 10 && open {{ onepassword_license_file }} && sleep 5 && osascript -e 'quit app "1Password 6"'
+  changed_when: False
+  when: ansible_distribution == 'MacOSX'
+  tags: onepassword-config
+
+- name: Configure 1Password Defaults
+  osx_defaults:
+    domain: com.agilebits.onepassword4
+    key: '{{ item.key }}'
+    type: '{{ item.type }}'
+    value: '{{ item.value }}'
+    state: present
+    dict_add: True
+  with_items: '{{ onepassword_defaults.macosx }}'
+  when: ansible_distribution == 'MacOSX'
+  tags: onepassword-config
+
+- name: Add 1Password to Dock
+  shell: dockutil --find '1Password' || dockutil --add '~/Applications/1Password 6.app'
+  changed_when: False
+  when: ansible_distribution == 'MacOSX'
+  tags: onepassword-config

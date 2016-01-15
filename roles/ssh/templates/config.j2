@@ -1,0 +1,20 @@
+# {{ ansible_managed }}
+
+ControlMaster auto
+ControlPath {{ ssh_keys_directory }}/%r@%h:%p
+ControlPersist yes
+
+Host *
+  ServerAliveInterval 60
+  TCPKeepAlive yes
+
+Host github.com
+  User git
+  Port 22
+  Hostname github.com
+  IdentityFile {{ ssh_keys_directory }}/github
+  IdentitiesOnly yes
+
+Host review.openstack.org
+ User chrislaco
+ IdentityFile {{ ssh_keys_directory }}/github

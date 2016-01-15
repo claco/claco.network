@@ -1,0 +1,2 @@
+---
+tmux_config_file: '{{ ansible_env.HOME }}/.tmux.conf'

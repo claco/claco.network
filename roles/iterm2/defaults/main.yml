@@ -1,0 +1,3 @@
+---
+iterm2_plist:
+iterm2_plist_file: '{{ ansible_env.HOME }}/Library/Preferences/com.googlecode.iterm2.plist'

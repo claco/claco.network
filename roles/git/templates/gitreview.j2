@@ -1,0 +1,4 @@
+[gitreview]
+{% for item in git_review %}
+  {{ item }} = {{ git_review[item] }}
+{% endfor %}

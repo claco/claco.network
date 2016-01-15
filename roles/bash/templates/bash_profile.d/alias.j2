@@ -1,0 +1,48 @@
+# {{ ansible_managed }}
+
+alias wget='wget -c'
+alias ssh='TERM=xterm ssh'
+alias git=hub
+alias cls='clear'
+{% if ansible_distribution == 'MacOSX' %}
+alias ls='ls -lhtG'
+{% else %}
+alias ls='ls -lhtG --color=auto'
+{% endif %}
+alias dir='ls -lt'
+alias gs='clear && git status -b'
+alias gl='clear && git log --format="%Cblue%h%Creset %Cgreen%s%Creset -- %Cblue%an, %aD%Creset"'
+alias gc='clear && git commit'
+alias gco='clear && git checkout'
+alias gaa='clear && git add -A . && gs'
+alias gfa='clear && git fetch --all'
+alias gmum='git merge upstream/master'
+alias ga='clear && git add'
+alias gd='clear && git diff'
+alias gdc='clear && git diff --cached'
+alias gp='clear && git push'
+alias gcm='clear && git checkout master'
+alias gbl='clear && git branch -l'
+alias gbr='clear && git branch -r'
+alias gsl='clear && git stash list'
+alias gsp='clear && git stash pop'
+alias gt='clear && git tag -a'
+alias gtl='clear && git tag -l'
+alias gfm='clear && git checkout master && git fetch --all && git merge upstream/master && git push origin master'
+alias gfms='clear && git checkout sprint && git fetch --all && git merge upstream/sprint && git push origin sprint'
+alias gmm='clear && git checkout master && git fetch --all && git merge upstream/master'
+alias buu='clear && brew update && brew outdated && brew upgrade'
+alias bc='bundle check'
+alias bi='bundle install'
+alias bl='bundle list'
+alias be='bundle exec'
+alias bake='bundle exec rake'
+alias bails='bundle exec rails'
+alias bspec='clear && bundle exec rspec'
+alias bork='bundle exec spork'
+
+{% if ansible_distribution == 'MacOSX' %}
+alias showall='defaults write com.apple.finder AppleShowAllFiles TRUE;killall Finder'
+alias hideall='defaults write com.apple.finder AppleShowAllFiles FALSE;killall Finder'
+alias sed='gsed'
+{% endif %}

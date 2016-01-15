@@ -1,0 +1,46 @@
+---
+- name: Install Required Packages | Homebrew
+  package: name={{ item }} state=latest
+  with_items: perl_required_packages[ansible_distribution | lower] | default([])
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install Required Packages | Packages
+  package: name={{ item }} state=latest
+  become: yes
+  with_items: perl_required_packages[ansible_distribution | lower] | default([])
+  when: ansible_distribution != 'MacOSX'
+
+- name: Install Perl Versions
+  shell: "{{ perl_install_command }} {{ item }} --notest --noman -j 4"
+  args:
+    creates: "{{ perl_versions_directory }}/{{ item }}"
+  tags: perl-install
+  with_items: perl_versions
+  notify: rehash plenv
+
+- name: Configure Default Version
+  template: src=version.j2 dest={{ plenv_root_directory }}/version
+  when: perl_default_version is defined
+  tags: perl-install, perl-default-version
+  notify: rehash plenv
+
+- name: Install CPANM
+  shell: 'PLENV_VERSION={{ item }} {{ plenv_bin_directory }}/plenv install-cpanm'
+  args:
+    creates: '{{ perl_versions_directory }}/{{ item }}/bin/cpanm'
+  tags: perl-install
+  with_items: perl_versions
+
+- name: Install Default Modules
+  shell: '{{ plenv_versions_directory }}/{{ item[0] }}/bin/cpanm install --notest --noman {{ item[1] }}'
+  args:
+    creates: '{{ perl_versions_directory }}/{{ item[0] }}/lib/perl5/site_perl/{{ item[0] }}/{{ item[1] | replace("::", "/") }}.pm'
+  tags: perl-install, perl-default-modules
+  with_nested:
+    - perl_versions
+    - perl_default_modules
+  notify: rehash plenv
+
+- name: Configure PerlTidy
+  template: src=perltidyrc.j2 dest={{ perl_tidyrc_file }}
+  tags: perl-perltidy-config

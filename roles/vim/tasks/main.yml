@@ -1,0 +1,68 @@
+---
+- name: Install Vim | Homebrew
+  package: name={{ item}} state=latest
+  with_items: vim_packages[ansible_distribution | lower] | default([])
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install Vim | Package
+  package: name={{ item}} state=latest
+  with_items: vim_packages[ansible_distribution | lower] | default([])
+  become: yes
+  when: ansible_distribution != 'MacOSX'
+
+- name: Create Vim Configuration Directories
+  file: path={{ vim_config_directory }}/{{ item }} state=directory
+  with_items: vim_config_directories
+  tags: vim-config
+
+- name: Configure Vim
+  template: src=vimrc.j2 dest={{ vim_config_file }}
+  tags: vim-config, vim-config-rc
+
+- name: Configure Custom Dictionaries
+  template: src=spell/{{ item }}.add.j2 dest={{ vim_config_directory }}/spell/{{ item }}.add
+  with_items:
+    - en.utf-8
+  tags: vim-config
+
+- name: Configure Custom Syntaxes
+  template: src=syntax/{{ item }}.vim.j2 dest={{ vim_config_directory }}/syntax/{{ item }}.vim
+  with_items:
+    - chef
+  tags: vim-config
+
+- name: Configure Custom After Plugins
+  template: src=after/plugin/{{ item }}.vim.j2 dest={{ vim_config_directory }}/after/plugin/{{ item }}.vim
+  with_items:
+    - rabl
+  tags: vim-config
+
+- name: Configure Custom Colors
+  template: src=colors/{{ item }}.vim.j2 dest={{ vim_config_directory }}/colors/{{ item }}.vim
+  with_items:
+    - moria
+    - moria256
+  tags: vim-config
+
+- name: Install Pathogen
+  get_url: url=https://tpo.pe/pathogen.vim dest={{ vim_config_directory }}/autoload/pathogen.vim force=yes
+  tags: vim-pathogen
+
+- name: Install Vim Plugins
+  git: repo={{ item.repo }} dest={{ vim_plugins_directory}}/{{ item.dest }} version={{ item.version | default('HEAD') }}
+  tags: vim-install-plugins
+  with_items: vim_plugins
+
+- name: Generate Command-T Plugin Makefile
+  shell: ruby extconf.rb
+  args:
+    chdir: '{{ vim_config_directory }}/bundle/vim-command-t/ruby/command-t'
+    creates: Makefile
+  tags: vim-plugins, vim-compile-command-t
+
+- name: Compile Command-T Plugin
+  shell: make
+  args:
+    chdir: '{{ vim_config_directory }}/bundle/vim-command-t/ruby/command-t'
+    creates: '{% if ansible_distribution == "MacOSX" %}ext.bundle{% else %}ext.so{% endif %}'
+  tags: vim-plugins, vim-compile-command-t

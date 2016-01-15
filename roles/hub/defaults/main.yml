@@ -1,0 +1,4 @@
+---
+hub_bin_directory: '{{ ansible_env.HOME }}/bin'
+hub_version: 2.2.3
+hub_package_url: https://github.com/github/hub/releases/download/v{{ hub_version }}/hub-linux-amd64-{{ hub_version }}.tgz

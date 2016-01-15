@@ -1,0 +1,62 @@
+---
+- name: Install Required Packages | Homebrew
+  homebrew: name=weechat install_options='--with-aspell' state=present
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install Required Packages | Packages
+  package: name={{ item }} state=latest
+  become: yes
+  with_items: weechat_required_packages[ansible_distribution | lower] | default([])
+  when: ansible_distribution != 'MacOSX'
+
+- name: Create Weechat Directory
+  file: path={{ weechat_config_directory }} state=directory mode=0700
+  tags: weechat-config
+
+- name: Configure Weechat
+  template: src={{ item }}.conf.j2 dest={{ weechat_config_directory }}/{{ item }}.conf mode=0600
+  with_items:
+    - alias
+    - aspell
+    - charset
+    - exec
+    - irc
+    - logger
+    - otr
+    - plugins
+    - relay
+    - rmodifier
+    - script
+    - sec
+    - trigger
+    - weechat
+    - xfer
+  tags: weechat-config
+
+- name: Create Weechat SSL Directory
+  file: path={{ weechat_ssl_directory }} state=directory mode=0700
+  tags: weechat-config
+
+- name: Configure Weechat SSL
+  copy: src=ssl/{{ item }} dest={{ weechat_ssl_directory }}/{{ item }} mode=0600
+  with_items:
+    - ca.pem
+  tags: weechat-config
+
+- name: Create Weechat Plugin Directories
+  file: path={{ weechat_config_directory }}/{{ item }}/autoload state=directory mode=0700
+  with_items:
+    - python
+    - perl
+    - ruby
+  tags: weechat-config
+
+- name: Configure Weechat Plugins
+  copy: src={{ item }} dest={{ weechat_config_directory }}/{{ item }} mode=0700
+  with_items:
+    - python/autoload/colorize_nicks.py
+    - python/autoload/upside_down.py
+  tags: weechat-config
+
+
+

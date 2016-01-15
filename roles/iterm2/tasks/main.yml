@@ -1,0 +1,16 @@
+---
+- name: Install Required Packages | Homebrew
+  homebrew_cask: name=iterm2 state=present
+  when: ansible_distribution == 'MacOSX'
+
+- name: Copy iTerm2 Plist File
+  shell: echo '{{ iterm2_plist }}' | base64 --decode > '{{ iterm2_plist_file }}'
+  when: ansible_distribution == 'MacOSX'
+  args:
+    creates: '{{ iterm2_plist_file }}'
+  tags: iterm2-config
+
+- name: Add iTerm2 to Dock
+  shell: dockutil --find 'iTerm2' || dockutil --add '~/Applications/iTerm.app'
+  changed_when: False
+  when: ansible_distribution == 'MacOSX'

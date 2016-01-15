@@ -1,0 +1,7 @@
+---
+gist_bin_directory: '{{ ansible_env.HOME }}/bin'
+gist_config_file: '{{ ansible_env.HOME }}/.gist'
+gist_token:
+gist_required_packages:
+  fedora:
+    - ruby

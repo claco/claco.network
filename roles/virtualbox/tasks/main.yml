@@ -1,0 +1,10 @@
+---
+- name: Install Required Packages | Homebrew
+  homebrew_cask: name=virtualbox state=present
+  become: yes
+  when: ansible_distribution == 'MacOSX'
+
+- name: Add VirtualBox to Dock
+  shell: dockutil --find 'VirtualBox' || dockutil --add '/Applications/VirtualBox.app'
+  changed_when: False
+  when: ansible_distribution == 'MacOSX'

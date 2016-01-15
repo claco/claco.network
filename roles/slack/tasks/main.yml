@@ -1,0 +1,9 @@
+---
+- name: Install Required Packages | Homebrew
+  homebrew_cask: name=slack state=present
+  when: ansible_distribution == 'MacOSX'
+
+- name: Add Slack to Dock
+  shell: dockutil --find 'Slack' || dockutil --add '~/Applications/Slack.app'
+  changed_when: False
+  when: ansible_distribution == 'MacOSX'

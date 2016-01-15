@@ -1,0 +1,9 @@
+---
+- name: Create Credentials Directory
+  file: name={{ rackspace_credentials_directory }} state=directory mode=0700
+  tags: rackspace-config
+
+- name: Create Credentials
+  template: src=credentials.j2 dest={{ rackspace_credentials_directory }}/{{ item.key }} mode=0600
+  with_dict: rackspace_credentials
+  tags: rackspace-config

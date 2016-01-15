@@ -1,0 +1,6 @@
+---
+build_essential_packages:
+  fedora:
+    - '@Development Tools'
+  ubuntu:
+    - build-essential

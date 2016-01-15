@@ -1,0 +1,24 @@
+# {{ ansible_managed }}
+
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+  source /etc/bashrc
+fi
+
+{% if ansible_distribution == 'MacOSX' %}
+# OSX Doesn't set /usr/local/bin for ssh
+if [ ! -z "$SSH_TTY" ]; then
+  PATH=$PATH:/usr/local/bin
+  export PATH
+fi
+{% endif %}
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+if [ "$TERM" == "xterm" ]; then
+  export TERM=xterm-256color
+fi

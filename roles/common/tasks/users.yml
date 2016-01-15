@@ -1,0 +1,28 @@
+---
+# tasks file for ./roles/common/users
+- name: Configure User Groups
+  group:
+    name: "{{ item.value.group }}"
+    gid: "{{ item.value.gid }}"
+    state: present
+  with_dict: "{{ users }}"
+  sudo: yes
+
+- name: Configure Users
+  user:
+    name: "{{ item.key }}"
+    password: "{{ item.value.password }}"
+    group: "{{ item.key }}"
+    groups: "{{ item.value.groups }}"
+    append: yes
+    state: present
+  with_dict: "{{ users }}"
+  sudo: yes
+
+- name: Configure SSH Keys
+  authorized_key:
+    user: "{{ item.key }}"
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    state: present
+  with_dict: "{{ users }}"
+  sudo: yes
