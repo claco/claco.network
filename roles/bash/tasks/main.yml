@@ -43,5 +43,5 @@
   tags: bash-config
 
 - name: Change Default Shell
-  user: name={{ ansible_user }} shell=/usr/bin/bash
+  user: name={{ ansible_user }} shell=/usr/local/bin/bash
   become: yes
