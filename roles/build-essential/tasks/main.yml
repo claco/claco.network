@@ -1,6 +1,6 @@
 ---
 - name: Install Build Essentials
   package: name={{ item }} state=latest
-  with_items: build_essential_packages[ansible_distribution | lower] | default([])
+  with_items: '{{ build_essential_packages[ansible_distribution | lower] | default([]) }}'
   become: yes
   tags: build-essential-install
