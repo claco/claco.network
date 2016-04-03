@@ -2,6 +2,12 @@
 - name: Install Required Packages | Homebrew
   homebrew_cask: name=boom state=present
   when: ansible_distribution == 'MacOSX'
+  
+- name: Create Boom License Folder
+  file: name={{ boom_license_folder }} state=directory mode=0755
+
+- name: Install Boom License
+  template: src=license.plist.j2 dest={{ boom_license_file }}
 
 - name: Add Boom to Dock
   shell: dockutil --find 'Boom' || dockutil --add '~/Applications/Boom 2.app'

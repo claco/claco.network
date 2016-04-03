@@ -1,1 +1,5 @@
 ---
+boom_license_code:
+boom_license_email:
+boom_license_folder: '{{ ansible_env.HOME }}/.boom'
+boom_license_file: '{{ boom_license_folder }}/boom.license'
