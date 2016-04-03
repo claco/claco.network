@@ -37,5 +37,6 @@
     - { role: sizeup,      tags: sizeup }
     - { role: terminal,    tags: terminal }
     - { role: tunnelblick, tags: tunnelblick }
+    - { role: vagrant,     tags: vagrant }
     - { role: virtualbox,  tags: virtualbox }
     - { role: p4merge,     tags: p4merge, when: ansible_distribution == 'MacOSX' }

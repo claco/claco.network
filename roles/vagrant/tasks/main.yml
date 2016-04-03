@@ -1,0 +1,4 @@
+---
+- name: Install Required Packages | Homebrew
+  homebrew_cask: name=vagrant state=present
+  when: ansible_distribution == 'MacOSX'

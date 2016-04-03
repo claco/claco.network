@@ -1,7 +1,7 @@
 hub
 ===
 
-Install and configure VirtualBox.
+Install and configure Vagrant.
 
 Requirements
 ------------
@@ -23,7 +23,7 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: virtualbox }
+         - { role: vagrant }
 
 License
 -------
