@@ -3,6 +3,20 @@
   homebrew_cask: name=caffeine state=present
   when: ansible_distribution == 'MacOSX'
 
+- name: Supress Launch Message
+  osx_defaults:
+    domain: com.lightheadsw.Caffeine
+    key: SuppressLaunchMessage
+    type: bool
+    value: True
+
+- name: Active On Launch
+  osx_defaults:
+    domain: com.lightheadsw.Caffeine
+    key: ActivateOnLaunch
+    type: bool
+    value: True
+
 - name: Add Caffeine to Dock
   shell: dockutil --find 'Caffeine' || dockutil --add '~/Applications/Caffeine.app'
   changed_when: False
