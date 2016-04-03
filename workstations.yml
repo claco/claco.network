@@ -35,6 +35,7 @@
     - { role: omnifocus,   tags: omnifocus }
     - { role: slack,       tags: slack }
     - { role: sizeup,      tags: sizeup }
+    - { role: steam,       tags: steam }
     - { role: terminal,    tags: terminal }
     - { role: tunnelblick, tags: tunnelblick }
     - { role: vagrant,     tags: vagrant }

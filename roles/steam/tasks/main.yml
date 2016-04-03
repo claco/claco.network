@@ -1,0 +1,10 @@
+---
+- name: Install Required Packages | Homebrew
+  homebrew_cask: name=steam state=present
+  become: yes
+  when: ansible_distribution == 'MacOSX'
+
+- name: Add Steam to Dock
+  shell: dockutil --find 'Steam' || dockutil --add '~/Applications/Steam.app'
+  changed_when: False
+  when: ansible_distribution == 'MacOSX'
