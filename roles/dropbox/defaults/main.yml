@@ -1,1 +1,2 @@
 ---
+dropbox_folder: '{{ ansible_env.HOME }}/Dropbox'

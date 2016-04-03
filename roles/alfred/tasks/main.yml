@@ -5,10 +5,17 @@
 
 
 - name: Create Alfred License Folder
-  file: name={{ alfred_license_folder }} state=directory
+  file: name={{ alfred_license_folder }} state=directory mode=0755
 
 - name: Install Alfred License
   template: src=license.plist.j2 dest={{ alfred_license_file }}
+
+- name: Configure Sync Folder
+  osx_defaults:
+    domain: com.runningwithcrayons.Alfred-Preferences
+    key: syncfolder
+    type: string
+    value: '{{ alfred_sync_folder }}'
 
 - name: Add Alfred to Dock
   shell: dockutil --find 'Alfred' || dockutil --add '~/Applications/Alfred 2.app'
