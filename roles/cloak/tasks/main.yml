@@ -3,6 +3,27 @@
   homebrew_cask: name=cloak state=present
   when: ansible_distribution == 'MacOSX'
 
+- name: Enable Global Hot Key
+  osx_defaults:
+    domain: com.bourgeoisbits.cloak.agent
+    key: EnableHotKey
+    type: bool
+    value: True
+
+- name: Configure Hot Key
+  osx_defaults:
+    domain: com.bourgeoisbits.cloak.agent
+    key: HotKey
+    type: int
+    value: 50331653
+
+- name: Configure Username
+  osx_defaults:
+    domain: com.bourgeoisbits.cloak.agent
+    key: Username
+    type: string
+    value: '{{ cloak_username }}'
+
 - name: Add Cloak to Dock
   shell: dockutil --find 'Cloak' || dockutil --add '~/Applications/Cloak.app'
   changed_when: False
