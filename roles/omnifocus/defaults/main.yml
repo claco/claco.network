@@ -1,1 +1,5 @@
 ---
+omnifocus_license_owner:
+omnifocus_license_key:
+omnifocus_license_folder: '{{ ansible_env.HOME }}/.omnifocus'
+omnifocus_license_file: '{{ omnifocus_license_folder }}/omnifocus.license'

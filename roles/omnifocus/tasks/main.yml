@@ -3,6 +3,12 @@
   homebrew_cask: name=omnifocus state=present
   when: ansible_distribution == 'MacOSX'
 
+- name: Create OmniFocus License Folder
+  file: name={{ omnifocus_license_folder }} state=directory mode=0755
+
+- name: Install OmniFocus License
+  template: src=license.plist.j2 dest={{ omnifocus_license_file }}
+
 - name: Add OmniFocus to Dock
   shell: dockutil --find 'OmniFocus' || dockutil --add '~/Applications/Omnifocus.app'
   changed_when: False
