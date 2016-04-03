@@ -38,6 +38,13 @@
     type: bool
     value: False
 
+- name: Enable Notification Sounds
+  osx_defaults:
+    domain: com.bourgeoisbits.cloak.agent
+    key: NotifyWithSound
+    type: bool
+    value: True
+
 - name: Add Cloak to Dock
   shell: dockutil --find 'Cloak' || dockutil --add '~/Applications/Cloak.app'
   changed_when: False
