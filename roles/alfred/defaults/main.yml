@@ -1,1 +1,5 @@
 ---
+alfred_license_code:
+alfred_license_email:
+alfred_license_folder: '{{ ansible_env.HOME }}/Library/Application Support/Alfred 2/'
+alfred_license_file: '{{ alfred_license_folder }}/license.plist'
