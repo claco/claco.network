@@ -5,5 +5,5 @@
 
 - name: Create Credentials
   template: src=credentials.j2 dest={{ rackspace_credentials_directory }}/{{ item.key }} mode=0600
-  with_dict: rackspace_credentials
+  with_dict: '{{ rackspace_credentials }}'
   tags: rackspace-config
