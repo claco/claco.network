@@ -1,6 +1,7 @@
 ---
-- name: Install Required Packages | Homebrew
-  homebrew_cask: name=google-chrome state=present
+- name: Install Required Packages | Packages
+  homebrew_cask: name={{ item }} state=present
+  with_items: '{{ chrome_required_packages[ansible_distribution | lower] | default([]) }}'
   when: ansible_distribution == 'MacOSX'
 
 - name: Install Required Packages | Packages
