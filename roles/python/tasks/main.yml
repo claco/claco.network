@@ -1,13 +1,13 @@
 ---
 - name: Install Required Packages | Homebrew
   package: name={{ item }} state=latest
-  with_items: python_required_packages[ansible_distribution | lower] | default([])
+  with_items: '{{ python_required_packages[ansible_distribution | lower] | default([]) }}'
   when: ansible_distribution == 'MacOSX'
 
 - name: Install Required Packages | Packages
   package: name={{ item }} state=latest
   become: yes
-  with_items: python_required_packages[ansible_distribution | lower] | default([])
+  with_items: '{{ python_required_packages[ansible_distribution | lower] | default([]) }}'
   when: ansible_distribution != 'MacOSX'
 
 - name: Create Pip Directory
@@ -22,8 +22,8 @@
   shell: "{{ python_install_command }} {{ item }}"
   args:
     creates: "{{ python_versions_directory }}/{{ item }}"
+  with_items: '{{ python_versions }}'
   tags: python-install
-  with_items: python_versions
   notify: rehash pyenv
 
 - name: Configure Default Version
@@ -32,10 +32,11 @@
   tags: python-install, python-default-version
   notify: rehash pyenv
 
-- name: Install Default Packages
+- name: Install Default Packages | Ansible
   pip: name={{ item[1] }} executable={{ pyenv_versions_directory }}/{{ item[0] }}/bin/pip state=latest
-  tags: python-install, python-default-packages
+  when: not item[0].startswith('3.5.')
   with_nested:
-    - python_versions
-    - python_default_packages
+    - '{{ python_versions }}'
+    - '{{ python_default_packages }}'
+  tags: python-install, python-default-packages
   notify: rehash pyenv
