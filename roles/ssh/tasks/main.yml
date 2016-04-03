@@ -1,13 +1,13 @@
 ---
 - name: Install Required Packages | Homebrew
   package: name={{ item }} state=latest
-  with_items: ssh_required_packages[ansible_distribution | lower] | default([])
+  with_items: '{{ ssh_required_packages[ansible_distribution | lower] | default([]) }}'
   when: ansible_distribution == 'MacOSX'
 
 - name: Install Required Packages | Packages
   package: name={{ item }} state=latest
   become: yes
-  with_items: ssh_required_packages[ansible_distribution | lower] | default([])
+  with_items: '{{ ssh_required_packages[ansible_distribution | lower] | default([]) }}'
   when: ansible_distribution != 'MacOSX'
 
 - name: Create SSH Directory
@@ -24,7 +24,7 @@
 
 - name: Configure SSH Keypairs
   copy: content={{ item.value }} dest={{ ssh_keys_directory }}/{{ item.key }} mode=0700
-  with_dict: ssh_keys
+  with_dict: '{{ ssh_keys }}'
   no_log: True
   tags: ssh-config
 
@@ -35,5 +35,5 @@
 
 - name: Configure Known Hosts
   known_hosts: name={{ item }} path={{ ssh_known_hosts_file }} key="{{ lookup('pipe', 'ssh-keyscan -t rsa ' + item) }}"
-  with_items: ssh_known_hosts
+  with_items: '{{ ssh_known_hosts }}'
   tags: ssh-config, ssh-known-hosts
