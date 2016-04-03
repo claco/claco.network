@@ -2,7 +2,7 @@
 - name: Install Required Packages
   package: name={{ item }} state=latest
   become: yes
-  with_items: gist_required_packages[ansible_distribution | lower] | default([])
+  with_items: '{{ gist_required_packages[ansible_distribution | lower] | default([]) }}'
   tags: gist-required-packages
 
 - name: Create Bin Directory
