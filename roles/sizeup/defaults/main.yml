@@ -1,5 +1,5 @@
 ---
-sizeup_license_folder: '{{ ansible_env.HOME }}/Library/Application\ Support/SizeUp'
+sizeup_license_folder: '{{ ansible_env.HOME }}/Library/Application Support/SizeUp'
 sizeup_license_file: '{{ sizeup_license_folder }}/SizeUp.sizeuplicense'
 sizeup_license:
 sizeup_defaults:
