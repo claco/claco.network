@@ -41,3 +41,7 @@
 - name: Configure Input RC
   template: src=inputrc.j2 dest={{ bash_inputrc_file }}
   tags: bash-config
+
+- name: Change Default Shell
+  user: name={{ ansible_user }} shell=/usr/bin/bash
+  become: yes
