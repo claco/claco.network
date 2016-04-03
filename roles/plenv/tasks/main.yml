@@ -5,8 +5,8 @@
 
 - name: Install PlEnv Plugins
   git: repo={{ item.repo }} dest={{ plenv_plugins_directory}}/{{ item.dest }}
+  with_items: '{{ plenv_plugins }}'
   tags: plenv-install-plugins
-  with_items: plenv_plugins
 
 - name: Configure Bash Profile
   template: src=bash.j2 dest={{ bash_profile_directory }}/plenv
