@@ -1,18 +1,18 @@
 ---
 - name: Install Vim | Homebrew
   package: name={{ item}} state=latest
-  with_items: vim_packages[ansible_distribution | lower] | default([])
+  with_items: '{{ vim_packages[ansible_distribution | lower] | default([]) }}'
   when: ansible_distribution == 'MacOSX'
 
 - name: Install Vim | Package
   package: name={{ item}} state=latest
-  with_items: vim_packages[ansible_distribution | lower] | default([])
+  with_items: '{{ vim_packages[ansible_distribution | lower] | default([]) }}'
   become: yes
   when: ansible_distribution != 'MacOSX'
 
 - name: Create Vim Configuration Directories
   file: path={{ vim_config_directory }}/{{ item }} state=directory
-  with_items: vim_config_directories
+  with_items: '{{ vim_config_directories }}'
   tags: vim-config
 
 - name: Configure Vim
@@ -50,8 +50,8 @@
 
 - name: Install Vim Plugins
   git: repo={{ item.repo }} dest={{ vim_plugins_directory}}/{{ item.dest }} version={{ item.version | default('HEAD') }}
+  with_items: '{{ vim_plugins }}'
   tags: vim-install-plugins
-  with_items: vim_plugins
 
 - name: Generate Command-T Plugin Makefile
   shell: ruby extconf.rb
