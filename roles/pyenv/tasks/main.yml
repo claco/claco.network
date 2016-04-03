@@ -5,8 +5,8 @@
 
 - name: Install PyEnv Plugins
   git: repo={{ item.repo }} dest={{ pyenv_plugins_directory}}/{{ item.dest }}
+  with_items: '{{ pyenv_plugins }}'
   tags: pyenv-install-plugins
-  with_items: pyenv_plugins
 
 - name: Configure Default Packages
   template: src=default-packages.j2 dest={{ pyenv_root_directory }}/default-packages
