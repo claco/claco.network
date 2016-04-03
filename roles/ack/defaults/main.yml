@@ -1,0 +1,8 @@
+---
+ack_required_packages:
+  macosx:
+    - ack
+  fedora:
+    - ack
+  ubuntu:
+    - ack-grep

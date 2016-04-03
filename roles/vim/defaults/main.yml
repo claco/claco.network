@@ -12,24 +12,13 @@ vim_plugins_directory: '{{ vim_config_directory }}/bundle'
 vim_packages:
   macosx:
     - vim
-    - ack
-    - the_silver_searcher
-    - aspell
   fedora:
     - vim
-    - ack
-    - the_silver_searcher
     - python-flake8
-    - aspell
-    - aspell-en
     - ruby-devel
   ubuntu:
     - vim
-    - ack-grep
-    - silversearcher-ag
     - python-flake8
-    - aspell
-    - aspell-en
     - ruby-dev
 vim_plugins:
   - { repo: 'https://github.com/mileszs/ack.vim.git', dest: 'vim-ack' }

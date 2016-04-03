@@ -1,0 +1,8 @@
+---
+wget_required_packages:
+  macosx:
+    - wget
+  fedora:
+    - wget
+  ubuntu:
+    - wget

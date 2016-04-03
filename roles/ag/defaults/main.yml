@@ -1,0 +1,8 @@
+---
+ag_required_packages:
+  macosx:
+    - the_silver_searcher
+  fedora:
+    - the_silver_searcher
+  ubuntu:
+    - silversearcher-ag

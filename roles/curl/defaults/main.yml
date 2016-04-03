@@ -1,0 +1,8 @@
+---
+curl_required_packages:
+  macosx:
+    - curl
+  fedora:
+    - curl
+  ubuntu:
+    - curl

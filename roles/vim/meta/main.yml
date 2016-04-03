@@ -13,4 +13,7 @@ galaxy_info:
     - system
 dependencies:
   - { role: build-essential }
+  - { role: aspell }
   - { role: git }
+  - { role: ack }
+  - { role: ag }
