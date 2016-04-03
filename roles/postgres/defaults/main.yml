@@ -1,0 +1,4 @@
+---
+postgres_required_packages:
+  macosx:
+    - postgres
