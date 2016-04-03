@@ -1,6 +1,6 @@
 ---
-sizeup_config_directory: '{{ ansible_env.HOME }}/.sizeup'
-sizeup_license_file: '{{ sizeup_config_directory }}/SizeUp.sizeuplicense'
+sizeup_license_folder: '{{ ansible_env.HOME }}/Library/Application\ Support/SizeUp'
+sizeup_license_file: '{{ sizeup_license_folder }}/SizeUp.sizeuplicense'
 sizeup_license:
 sizeup_defaults:
   macosx:
@@ -11,6 +11,10 @@ sizeup_defaults:
     - { key: ShowOverlay, value: 0, type: bool }
     - { key: ShowTooltips, value: 0, type: bool }
     - { key: Lower Left, type: dict, value: {key: ComboFlags, type: int, value: 10092544} }
+    - { key: Lower Left, type: dict, value: {key: ComboCode, type: int, value: 125} }
     - { key: Lower Right, type: dict, value: {key: ComboFlags, type: int, value: 10092544} }
+    - { key: Lower Right, type: dict, value: {key: ComboCode, type: int, value: 124} }
     - { key: Upper Left, type: dict, value: {key: ComboFlags, type: int, value: 10092544} }
+    - { key: Upper Left, type: dict, value: {key: ComboCode, type: int, value: 123} }
     - { key: Upper Right, type: dict, value: {key: ComboFlags, type: int, value: 10092544} }
+    - { key: Upper Right, type: dict, value: {key: ComboCode, type: int, value: 126} }
