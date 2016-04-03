@@ -7,7 +7,7 @@
 - name: Install Required Packages | Packages
   package: name={{ item }} state=latest
   become: yes
-  with_items: gpg_required_packages[ansible_distribution | lower] | default([])
+  with_items: '{{ gpg_required_packages[ansible_distribution | lower] | default([]) }}'
   when: ansible_distribution != 'MacOSX'
 
 - name: Create GPG Directory
@@ -18,12 +18,12 @@
   shell: echo '{{ item.value }}' | base64 --decode > {{ gpg_config_directory }}/{{ item.key }}
   args:
     creates: '{{ gpg_config_directory }}/{{ item.key }}'
-  with_dict: gpg_private_keys
+  with_dict: '{{ gpg_private_keys }}'
   no_log: True
   tags: gpg-config
 
 - name: Import Private Keys
   gpg_key: file={{ gpg_config_directory }}/{{ item.key }} state=present
-  with_dict: gpg_private_keys
+  with_dict: '{{ gpg_private_keys }}'
   no_log: True
   tags: gpg-config
