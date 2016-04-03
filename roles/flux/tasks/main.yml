@@ -3,6 +3,35 @@
   homebrew_cask: name=flux state=present
   when: ansible_distribution == 'MacOSX'
 
+- name: Configure Location
+  osx_defaults:
+    domain: org.herf.Flux
+    key: '{{ item.key }}'
+    type: string
+    value: '{{ item.value }}'
+  with_dict:
+    location: 41.093300,-81.430000
+    locationTextField: 41.0933,-81.43
+    locationType: L
+
+- name: Configure Temperatures
+  osx_defaults:
+    domain: org.herf.Flux
+    key: '{{ item.key }}'
+    type: int
+    value: '{{ item.value }}'
+  with_dict:
+    dayColorTemp: 6500
+    lateColorTemp: 1900
+    nightColorTemp: 3400
+
+- name: Configure Wake Time
+  osx_defaults:
+    domain: org.herf.Flux
+    key: wakeTime
+    type: int
+    value: 480
+
 - name: Add Flux to Dock
   shell: dockutil --find 'Flux' || dockutil --add '~/Applications/Flux.app'
   changed_when: False
