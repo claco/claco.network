@@ -13,3 +13,6 @@ galaxy_info:
     - system
 dependencies:
   - dockutil
+  - fonts
+  - solarized
+  - tmux

@@ -1,8 +1,7 @@
 ---
 - name: Add Solarized Dark Terminal Profile
-  shell: open '{{ solarized_config_directory }}/Solarized Dark.terminal' && sleep 5 && osascript -e 'quit app "Terminal"'
+  shell: open '{{ solarized_config_directory }}/Solarized Dark.terminal'
   changed_when: false
-  ignore_errors: yes
   tags: terminal-config
 
 - name: Configure Terminal Defaults
