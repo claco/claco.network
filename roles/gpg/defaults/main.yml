@@ -3,6 +3,10 @@ gpg_config_directory: '{{ ansible_env.HOME }}/.gnupg'
 gpg_private_keys: {}
 gpg_public_keys: {}
 gpg_required_packages:
+  macosx:
+    - gpg
+    - gpg2
+    - gpg-agent
   fedora:
     - gnupg
   ubuntu:
