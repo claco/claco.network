@@ -4,5 +4,10 @@ onepassword_license_file: '{{ onepassword_config_directory }}/ChristopherH.Laco-
 onepassword_license:
 onepassword_defaults:
   macosx:
+    - { key: CompletedEssentialSettings, value: 1, type: bool }
+    - { key: KeepHelperRunning, value: 1, type: bool }
+    - { key: LockOnIdle, value: 1, type: bool }
+    - { key: LockOnMainAppExit, value: 1, type: bool }
     - { key: ShowRichIcons, value: 1, type: bool }
     - { key: ShowStatusItem, value: 1, type: bool }
+    - { key: UserMetricsSkippedNewsletterSignupKey, value: 1, type: bool }
