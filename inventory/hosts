@@ -4,6 +4,5 @@ whitepi ansible_user=pi
 blackpi ansible_user=pi
 
 [workstations]
-henchman21
-sniper
-mqr13tg8wl
+henchman21 ansible_user=claco    ansible_host=localhost ansible_connection=local
+mqr13tg8wl ansible_user=chri5797 ansible_host=localhost ansible_connection=local
