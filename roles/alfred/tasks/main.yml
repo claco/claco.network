@@ -1,7 +1,6 @@
 ---
 - name: Install Required Packages | Homebrew
   homebrew_cask: name=alfred state=present
-  become: yes
   when: ansible_distribution == 'MacOSX'
 
 - name: Add Alfred to Dock
