@@ -8,6 +8,7 @@
   with_dict:
     Clicking: 1
     TrackpadThreeFingerHorizSwipeGesture: 1
+    TrackpadThreeFingerVertSwipeGesture: 2
     TrackpadThreeFingerTapGesture: 2
     
   when: ansible_distribution == 'MacOSX'
@@ -21,5 +22,6 @@
   with_dict:
     Clicking: 1
     TrackpadThreeFingerHorizSwipeGesture: 1
+    TrackpadThreeFingerVertSwipeGesture: 2
     TrackpadThreeFingerTapGesture: 2
   when: ansible_distribution == 'MacOSX'
