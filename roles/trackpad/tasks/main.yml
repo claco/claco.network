@@ -11,7 +11,7 @@
   when: ansible_distribution == 'MacOSX'
   tags: trackpad-config
 
-- name: Configure Internal Trackpad
+- name: Configure Bluetooth Trackpad
   osx_defaults:
     domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
     key: '{{ item.key }}'
@@ -20,5 +20,14 @@
     state: present
     dict_add: True
   with_items: '{{ trackpad_defaults.macosx }}'
+  when: ansible_distribution == 'MacOSX'
+  tags: trackpad-config
+
+- name: Configure Global Tap Behavior
+  osx_defaults:
+    domain: NSGlobalDomain
+    key: com.apple.mouse.tapBehavior
+    type: int
+    value: 1
   when: ansible_distribution == 'MacOSX'
   tags: trackpad-config

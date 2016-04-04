@@ -3,6 +3,24 @@ trackpad_defaults:
   macosx:
     - { key: CenterRelativeResizeEnabled, value: 1, type: bool }
     - { key: Clicking, value: 1, type: bool }
+    - { key: DragLock, value: 0, type: bool }
+    - { key: Dragging, value: 0, type: bool }
+    - { key: TrackpadCornerSecondaryClick, value: 0, type: int }
+    - { key: TrackpadFiveFingerPinchGesture, value: 2, type: int }
+    - { key: TrackpadFourFingerHorizSwipeGesture, value: 2, type: int }
+    - { key: TrackpadFourFingerPinchGesture, value: 2, type: int }
+    - { key: TrackpadFourFingerVertSwipeGesture, value: 2, type: int }
+    - { key: TrackpadHandResting, value: 1, type: bool }
+    - { key: TrackpadHorizScroll, value: 1, type: int }
+    - { key: TrackpadMomentumScroll, value: 1, type: bool }
+    - { key: TrackpadPinch, value: 1, type: int }
+    - { key: TrackpadRightClick, value: 1, type: bool }
+    - { key: TrackpadScroll, value: 1, type: bool }
+    - { key: TrackpadThreeFingerDrag, value: 0, type: bool }
     - { key: TrackpadThreeFingerHorizSwipeGesture, value: 1, type: int }
-    - { key: TrackpadThreeFingerVertSwipeGesture, value: 2, type: int }
     - { key: TrackpadThreeFingerTapGesture, value: 2, type: int }
+    - { key: TrackpadThreeFingerVertSwipeGesture, value: 2, type: int }
+    - { key: TrackpadTwoFingerDoubleTapGesture, value: 1, type: int }
+    - { key: TrackpadTwoFingerFromRightEdgeSwipeGesture, value: 3, type: int }
+    - { key: USBMouseStopsTrackpad, value: 0, type: bool }
+    - { key: UserPreferences, value: 1, type: bool }
