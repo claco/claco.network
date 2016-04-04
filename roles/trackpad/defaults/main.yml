@@ -2,9 +2,9 @@
 trackpad_defaults:
   macosx:
     - { key: CenterRelativeResizeEnabled, value: 1, type: bool }
-    - { key: Clicking, value: 1, type: bool }
-    - { key: DragLock, value: 0, type: bool }
-    - { key: Dragging, value: 0, type: bool }
+    - { key: Clicking, value: 1, type: int }
+    - { key: DragLock, value: 0, type: int }
+    - { key: Dragging, value: 0, type: int }
     - { key: TrackpadCornerSecondaryClick, value: 0, type: int }
     - { key: TrackpadFiveFingerPinchGesture, value: 2, type: int }
     - { key: TrackpadFourFingerHorizSwipeGesture, value: 2, type: int }
@@ -24,3 +24,23 @@ trackpad_defaults:
     - { key: TrackpadTwoFingerFromRightEdgeSwipeGesture, value: 3, type: int }
     - { key: USBMouseStopsTrackpad, value: 0, type: int }
     - { key: UserPreferences, value: 1, type: bool }
+
+trackpad_host_defaults:
+  macosx:
+    - { key: com.apple.trackpad.enableSecondaryClick, value: 1, type: bool }
+    - { key: com.apple.trackpad.fiveFingerPinchSwipeGesture, value: 2, type: int }
+    - { key: com.apple.trackpad.fourFingerHorizSwipeGesture, value: 2, type: int }
+    - { key: com.apple.trackpad.fourFingerPinchSwipeGesture, value: 2, type: int }
+    - { key: com.apple.trackpad.fourFingerVertSwipeGesture, value: 2, type: int }
+    - { key: com.apple.trackpad.momentumScroll, value: 1, type: bool }
+    - { key: com.apple.trackpad.pinchGesture, value: 1, type: bool }
+    - { key: com.apple.trackpad.rotateGesture, value: 1, type: bool }
+    - { key: com.apple.trackpad.scrollBehavior, value: 2, type: int }
+    - { key: com.apple.trackpad.threeFingerDragGesture, value: 0, type: bool }
+    - { key: com.apple.trackpad.threeFingerHorizSwipeGesture, value: 1, type: int }
+    - { key: com.apple.trackpad.threeFingerTapGesture, value: 2, type: int }
+    - { key: com.apple.trackpad.threeFingerVertSwipeGesture, value: 2, type: int }
+    - { key: com.apple.trackpad.trackpadCornerClickBehavior, value: 1, type: int }
+    - { key: com.apple.trackpad.twoFingerDoubleTapGesture, value: 1, type: int }
+    - { key: com.apple.trackpad.twoFingerFromRightEdgeSwipeGesture, value: 3, type: int }
+    - { key: com.apple.trackpad.version, value: 5, type: int }

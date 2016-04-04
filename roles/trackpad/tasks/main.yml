@@ -31,3 +31,14 @@
     value: 1
   when: ansible_distribution == 'MacOSX'
   tags: trackpad-config
+
+- name: Configure Global Behavior
+  osx_defaults:
+    host: currentHost
+    domain: NSGlobalDomain
+    key: '{{ item.key }}'
+    type: '{{ item.type }}'
+    value: '{{ item.value }}'
+  with_items: '{{ trackpad_host_defaults.macosx }}'
+  when: ansible_distribution == 'MacOSX'
+  tags: trackpad-config
