@@ -6,7 +6,7 @@
     type: bool
     value: '{{ item.value }}'
   with_dict:
-    Clicking: 1
+    Clicking: True
   when: ansible_distribution == 'MacOSX'
 
 - name: Configure Bluetooth Trackpad
@@ -16,5 +16,5 @@
     type: bool
     value: '{{ item.value }}'
   with_dict:
-    Clicking: 1
+    Clicking: True
   when: ansible_distribution == 'MacOSX'
