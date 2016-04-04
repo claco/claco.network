@@ -14,12 +14,6 @@
   no_log: True
   tags: sizeup-config
 
-#- name: Register SizeUp License
-  #shell: sleep 10 && open {{ sizeup_license_file }} && sleep 5 && osascript -e 'quit app "SizeUp"'
-  #changed_when: False
-  #when: ansible_distribution == 'MacOSX'
-  #tags: sizeup-config
-
 - name: Configure SizeUp Defaults
   osx_defaults:
     domain: com.irradiatedsoftware.SizeUp

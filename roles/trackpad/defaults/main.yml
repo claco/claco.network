@@ -1,1 +1,8 @@
 ---
+trackpad_defaults:
+  macosx:
+    - { key: CenterRelativeResizeEnabled, value: 1, type: bool }
+    - { key: Clicking, value: 1, type: bool }
+    - { key: TrackpadThreeFingerHorizSwipeGesture, value: 1, type: int }
+    - { key: TrackpadThreeFingerVertSwipeGesture, value: 2, type: int }
+    - { key: TrackpadThreeFingerTapGesture, value: 2, type: int }

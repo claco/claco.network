@@ -3,25 +3,22 @@
   osx_defaults:
     domain: com.apple.AppleMultitouchTrackpad
     key: '{{ item.key }}'
-    type: int
+    type: '{{ item.type }}'
     value: '{{ item.value }}'
-  with_dict:
-    Clicking: 1
-    TrackpadThreeFingerHorizSwipeGesture: 1
-    TrackpadThreeFingerVertSwipeGesture: 2
-    TrackpadThreeFingerTapGesture: 2
-    
+    state: present
+    dict_add: True
+  with_items: '{{ trackpad_defaults.macosx }}'
   when: ansible_distribution == 'MacOSX'
+  tags: trackpad-config
 
-- name: Configure Bluetooth Trackpad
+- name: Configure Internal Trackpad
   osx_defaults:
     domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
     key: '{{ item.key }}'
-    type: int
+    type: '{{ item.type }}'
     value: '{{ item.value }}'
-  with_dict:
-    Clicking: 1
-    TrackpadThreeFingerHorizSwipeGesture: 1
-    TrackpadThreeFingerVertSwipeGesture: 2
-    TrackpadThreeFingerTapGesture: 2
+    state: present
+    dict_add: True
+  with_items: '{{ trackpad_defaults.macosx }}'
   when: ansible_distribution == 'MacOSX'
+  tags: trackpad-config
