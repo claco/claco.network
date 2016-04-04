@@ -22,5 +22,5 @@ trackpad_defaults:
     - { key: TrackpadThreeFingerVertSwipeGesture, value: 2, type: int }
     - { key: TrackpadTwoFingerDoubleTapGesture, value: 1, type: int }
     - { key: TrackpadTwoFingerFromRightEdgeSwipeGesture, value: 3, type: int }
-    - { key: USBMouseStopsTrackpad, value: 0, type: bool }
+    - { key: USBMouseStopsTrackpad, value: 0, type: int }
     - { key: UserPreferences, value: 1, type: bool }
