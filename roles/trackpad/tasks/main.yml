@@ -1,0 +1,20 @@
+---
+- name: Configure Internal Trackpad
+  osx_defaults:
+    domain: com.apple.AppleMultitouchTrackpad
+    key: '{{ item.key }}'
+    type: bool
+    value: '{{ item.value }}'
+  with_dict:
+    Clicking: 1
+  when: ansible_distribution == 'MacOSX'
+
+- name: Configure Bluetooth Trackpad
+  osx_defaults:
+    domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: '{{ item.key }}'
+    type: bool
+    value: '{{ item.value }}'
+  with_dict:
+    Clicking: 1
+  when: ansible_distribution == 'MacOSX'

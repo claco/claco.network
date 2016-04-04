@@ -44,3 +44,4 @@
     - { role: postgres,    tags: postgres }
     - { role: plex,        tags: plex }
     - { role: p4merge,     tags: p4merge, when: ansible_distribution == 'MacOSX' }
+    - { role: trackpad,    tags: trackpad }
