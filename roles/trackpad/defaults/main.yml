@@ -2,9 +2,9 @@
 trackpad_defaults:
   macosx:
     - { key: CenterRelativeResizeEnabled, value: 1, type: bool }
-    - { key: Clicking, value: 1, type: int }
-    - { key: DragLock, value: 0, type: int }
-    - { key: Dragging, value: 0, type: int }
+    - { key: Clicking, value: 1, type: bool }
+    - { key: DragLock, value: 0, type: bool }
+    - { key: Dragging, value: 0, type: bool }
     - { key: TrackpadCornerSecondaryClick, value: 0, type: int }
     - { key: TrackpadFiveFingerPinchGesture, value: 2, type: int }
     - { key: TrackpadFourFingerHorizSwipeGesture, value: 2, type: int }
