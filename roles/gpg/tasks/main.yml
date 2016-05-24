@@ -1,6 +1,6 @@
 ---
 - name: Install Required Packages | Homebrew
-  homebrew: name={{ item }} state=present
+  package: name={{ item }} state=latest
   with_items: '{{ gpg_required_packages[ansible_distribution | lower] | default([]) }}'
   when: ansible_distribution == 'MacOSX'
 

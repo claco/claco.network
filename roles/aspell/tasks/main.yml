@@ -1,6 +1,6 @@
 ---
 - name: Install Required Packages | Homebrew
-  homebrew: name=aspell install_options='--with-lang-en' state=present
+  package: name=aspell install_options='--with-lang-en' state=latest
   when: ansible_distribution == 'MacOSX'
 
 - name: Install Required Packages | Packages
