@@ -62,7 +62,7 @@ options:
     required: false
     default: false
     choices: [ "true", "false" ]
-    version_added: "2.1"
+    version_added: "2.2"
   value:
     description:
       - The value to write. Only required when state = present.
@@ -95,7 +95,7 @@ EXAMPLES = '''
 - osx_defaults: domain=com.geekchimp.macable key=ExampleKeyToRemove state=absent
 '''
 
-from datetime import datetime
+import datetime
 
 # exceptions --------------------------------------------------------------- {{{
 class OSXDefaultsException(Exception):
@@ -153,7 +153,7 @@ class OSXDefaults(object):
             raise OSXDefaultsException("Invalid boolean value: {0}".format(repr(value)))
         elif type == "date":
             try:
-                return datetime.strptime(value.split("+")[0].strip(), "%Y-%m-%d %H:%M:%S")
+                return datetime.datetime.strptime(value.split("+")[0].strip(), "%Y-%m-%d %H:%M:%S")
             except ValueError:
                 raise OSXDefaultsException(
                     "Invalid date value: {0}. Required format yyy-mm-dd hh:mm:ss.".format(repr(value))
@@ -177,13 +177,10 @@ class OSXDefaults(object):
                 return [value]
             elif isinstance(value, list):
                 return value
+            elif isinstance(value, str):
+                return [eval(value)]
             else:
                 raise OSXDefaultsException("Invalid dict value: {0}".format(repr(value)))
-            # try:
-                # value = dict(value)
-            # except ValueError:
-                # raise OSXDefaultsException("Invalid dict value: {0}".format(repr(value)))
-            # return value
 
         raise OSXDefaultsException('Type is not supported: {0}'.format(type))
 
