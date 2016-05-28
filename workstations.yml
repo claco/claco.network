@@ -19,9 +19,9 @@
     - { role: tmux,        tags: tmux }
     - { role: rackspace,   tags: rackspace }
     - { role: weechat,     tags: weechat }
-    - { role: ruby,        tags: ruby, ruby_versions: ['1.9.3-p551', '2.1.8', '2.2.4', '2.3.0'], ruby_default_version: '1.9.3-p551', ruby_default_gems: ['rubygems-update', 'bundler', 'pry'] }
-    - { role: python,      tags: python, python_versions: ['2.7.11', '3.4.4', '3.5.1'], python_default_version: '2.7.11', python_default_packages: ['pip', 'wheel', 'flake8'] }
-    - { role: perl,        tags: perl, perl_versions: ['5.20.3', '5.22.1'], perl_default_version: '5.20.3', perl_default_modules: ['Carton', 'Perl::Tidy'] }
+    - { role: ruby,        tags: ruby }
+    - { role: python,      tags: python }
+    - { role: perl,        tags: perl }
     - { role: alfred,      tags: alfred }
     - { role: boom,        tags: boom }
     - { role: caffeine,    tags: caffeine }

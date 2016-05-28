@@ -2,10 +2,16 @@
 python_pip_config_directory: '{{ ansible_env.HOME}}/.pip'
 python_pip_config_file: '{{ python_pip_config_directory }}/pip.conf'
 python_install_command: '{{ pyenv_binary }} install'
-python_default_packages: []
+python_default_packages:
+  - pip
+  - wheel
+  - flake8
 python_versions_directory: '{{ pyenv_versions_directory }}'
-python_versions: []
-python_default_version:
+python_versions:
+  - 2.7.11
+  - 3.4.4
+  - 3.5.1
+python_default_version: system
 python_required_packages:
   macosx:
     - gdbm
