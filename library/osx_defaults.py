@@ -177,8 +177,6 @@ class OSXDefaults(object):
                 return [value]
             elif isinstance(value, list):
                 return value
-            elif isinstance(value, str):
-                return [eval(value)]
             else:
                 raise OSXDefaultsException("Invalid dict value: {0}".format(repr(value)))
 
@@ -435,6 +433,7 @@ def main():
             value=dict(
                 default=None,
                 required=False,
+                type="raw",
             ),
             state=dict(
                 default="present",
