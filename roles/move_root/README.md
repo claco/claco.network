@@ -1,7 +1,7 @@
 Role Name
 =========
 
-Expand the Root File System on a fresh Raspbian Pi Jessie image after first boot.
+Move the Root File System on a fresh Raspbian Pi Jessie image to another device, like USB flash drive.
 
 Requirements
 ------------
@@ -23,7 +23,7 @@ Example Playbook
 
     - hosts: pi
       roles:
-         - { role: expand_root }
+         - { role: move_root }
 
 License
 -------

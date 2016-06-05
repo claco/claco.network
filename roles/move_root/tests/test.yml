@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - ./roles/expand_root
+    - ./roles/move_root
