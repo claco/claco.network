@@ -1,0 +1,97 @@
+---
+  - name: Install Required Packages
+    become: yes
+    package: name={{ item }} state=present
+    with_items:
+      - parted
+      - rsync
+
+  - name: Check For Primary Partition
+    become: yes
+    command: parted -s {{ move_root_destination_partition }} print 1
+    register: partition
+    failed_when: partition.rc is not defined
+    changed_when: partition.rc != 0
+
+  - name: Create Disk Label
+    become: yes
+    command: parted -s {{ move_root_destination_device }} mklabel gpt
+    when: partition|changed
+
+  - name: Create Primary Partition
+    become: yes
+    command: parted -s --align optimal {{ move_root_destination_device }} mkpart primary {{ move_root_destination_fstype }} 0% 100%
+    when: partition|changed
+
+  - name: Create Filesystem
+    become: yes
+    filesystem: dev={{ move_root_destination_partition }} fstype={{ move_root_destination_fstype }} opts="-L rootfs"
+    when: partition|changed
+
+  - name: Find Primary Partition UUID
+    become: yes
+    shell: blkid -o export {{ move_root_destination_partition }} | grep ^UUID | awk -F'=' '{print $2}'
+    register: uuid
+    failed_when: uuid.rc is not defined
+    changed_when: false
+
+  - name: Find Primary Partition PARTUUID
+    become: yes
+    shell: blkid -o export {{ move_root_destination_partition }} | grep ^PARTUUID | awk -F'=' '{print $2}'
+    register: partuuid
+    failed_when: partuuid.rc is not defined
+    changed_when: false
+
+  - name: Find Primary Partition Mount
+    become: yes
+    command: grep '/dev/disk/by-uuid/{{ uuid.stdout }}' /etc/fstab
+    register: fstab
+    failed_when: fstab.rc != 0 and fstab.rc != 1
+    changed_when: fstab.rc == 1
+
+  - name: Mount Primary Partition
+    become: yes
+    command: mount {{ move_root_destination_partition }} {{ move_root_mount_point }}
+    args:
+      warn: no
+    register: mounted_partition
+    failed_when: mounted_partition.rc != 0
+    when: fstab|changed
+
+  - name: Copy Root Partition
+    become: yes
+    command: rsync -ax {{ move_root_source_path }} {{ move_root_mount_point }}
+    args:
+      warn: no
+    register: rsync
+    failed_when: rsync.rc != 0
+    when: fstab|changed
+
+  - name: Add New Mount Point Entry
+    become: yes
+    mount: name=/ src=/dev/disk/by-uuid/{{ uuid.stdout }} fstab={{ move_root_mount_point }}/etc/fstab fstype={{ move_root_destination_fstype }} opts=defaults,noatime passno=1 state=present
+    when: fstab|changed
+
+  - name: Update Boot Command Line
+    become: yes
+    replace: dest=/boot/cmdline.txt regexp='root=\/dev\/mmcblk0p2 rootfstype=ext4' replace='root=PARTUUID={{ partuuid.stdout }} rootdelay=5 rootfstype={{ move_root_destination_fstype }}'
+    when: fstab|changed
+
+  - name: Unmount Primary Partition
+    become: yes
+    command: umount {{ move_root_mount_point }}
+    register: mounted_partition
+    failed_when: mounted_partition.rc != 0
+    when: fstab|changed
+
+  - name: Restart
+    become: yes
+    shell: reboot
+    async: 0
+    poll: 0
+    ignore_errors: true
+    when: fstab|changed
+
+  - name: Wait For Reboot
+    local_action: wait_for host={{ ansible_ssh_host }} port={{ ansible_ssh_port | default(22) }} delay=30 timeout=5400 state=started
+    when: fstab|changed

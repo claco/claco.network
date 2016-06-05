@@ -3,17 +3,19 @@
   hosts: raspberries
   tags: raspberries
   roles:
-    - { role: common, tags: common }
-  tasks:
-    - name: Set Hostname
-      shell: hostnamectl set-hostname {{ inventory_hostname }}
-      sudo: yes
-      tags: hostname
+    - { role: move_root, tags: move_root }
 
-    - name: Clone Root Mover
-      git:
-        repo: https://github.com/adafruit/Adafruit-Pi-ExternalRoot-Helper.git
-        dest: ~/Adafruit-Pi-ExternalRoot-Helper
-        depth: 1
-        version: master
-      tags: git
+    #- { role: common, tags: common }
+  #tasks:
+    #- name: Set Hostname
+      #shell: hostnamectl set-hostname {{ inventory_hostname }}
+      #sudo: yes
+      #tags: hostname
+
+    #- name: Clone Root Mover
+      #git:
+        #repo: https://github.com/adafruit/Adafruit-Pi-ExternalRoot-Helper.git
+        #dest: ~/Adafruit-Pi-ExternalRoot-Helper
+        #depth: 1
+        #version: master
+      #tags: git
