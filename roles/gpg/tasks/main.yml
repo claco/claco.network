@@ -1,4 +1,8 @@
 ---
+- name: Install GPGTools
+  homebrew_cask: name=gpgtools state=present
+  when: ansible_distribution == 'MacOSX'
+
 - name: Install Required Packages | Homebrew
   package: name={{ item }} state=latest
   with_items: '{{ gpg_required_packages[ansible_distribution | lower] | default([]) }}'
