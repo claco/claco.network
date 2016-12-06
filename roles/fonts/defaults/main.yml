@@ -3,9 +3,9 @@ fonts_required_packages:
   macosx:
     - font-ubuntu
     - font-source-code-pro
-    - font-ubuntu-mono-powerline
     - font-dejavu-sans
     - font-dejavu-sans-mono-for-powerline
     - font-inconsolata
     - font-inconsolata-for-powerline
     - font-open-sans
+#    - font-ubuntu-mono-powerline
