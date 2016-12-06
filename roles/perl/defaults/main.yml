@@ -3,6 +3,7 @@ perl_tidyrc_file: '{{ ansible_env.HOME }}/.perltidyrc'
 perl_install_command: '{{ plenv_binary }} install'
 perl_versions_directory: '{{ plenv_versions_directory }}'
 perl_versions:
+  - 5.18.2
   - 5.18.4
   - 5.20.3
   - 5.22.2

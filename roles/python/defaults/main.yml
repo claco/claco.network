@@ -8,9 +8,10 @@ python_default_packages:
   - flake8
 python_versions_directory: '{{ pyenv_versions_directory }}'
 python_versions:
-  - 2.7.11
-  - 3.4.4
-  - 3.5.1
+  - 2.7.10
+  - 2.7.12
+  - 3.4.5
+  - 3.5.2
 python_default_version: system
 python_required_packages:
   macosx:

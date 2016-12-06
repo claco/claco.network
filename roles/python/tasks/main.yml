@@ -34,7 +34,6 @@
 
 - name: Install Default Packages | Ansible
   pip: name={{ item[1] }} executable={{ pyenv_versions_directory }}/{{ item[0] }}/bin/pip state=latest
-  when: not item[0].startswith('3.5.')
   with_nested:
     - '{{ python_versions }}'
     - '{{ python_default_packages }}'
