@@ -1,0 +1,12 @@
+---
+- name: Install Required Packages | Homebrew
+  homebrew_cask: name=docker state=present
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install Docker-py
+  pip: name=docker-py state=latest
+
+- name: Add Docker to Dock
+  shell: dockutil --find 'Docker' || dockutil --add '/Applications/Docker.app'
+  changed_when: False
+  when: ansible_distribution == 'MacOSX'
