@@ -4,6 +4,6 @@
   when: ansible_distribution == 'MacOSX'
 
 - name: Add Evernote to Dock
-  shell: dockutil --find 'Evernote' || dockutil --add '~/Applications/Evernote.app'
+  shell: dockutil --find 'Evernote' || dockutil --add '/Applications/Evernote.app'
   changed_when: False
   when: ansible_distribution == 'MacOSX'

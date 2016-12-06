@@ -4,6 +4,6 @@
   when: ansible_distribution == 'MacOSX'
 
 - name: Add Dropbox to Dock
-  shell: dockutil --find 'Dropbox' || dockutil --add '~/Applications/Dropbox.app'
+  shell: dockutil --find 'Dropbox' || dockutil --add '/Applications/Dropbox.app'
   changed_when: False
   when: ansible_distribution == 'MacOSX'

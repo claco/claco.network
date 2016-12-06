@@ -10,6 +10,6 @@
   template: src=license.plist.j2 dest={{ boom_license_file }}
 
 - name: Add Boom to Dock
-  shell: dockutil --find 'Boom' || dockutil --add '~/Applications/Boom 2.app'
+  shell: dockutil --find 'Boom' || dockutil --add '/Applications/Boom 2.app'
   changed_when: False
   when: ansible_distribution == 'MacOSX'

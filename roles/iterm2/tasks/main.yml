@@ -11,6 +11,6 @@
   tags: iterm2-config
 
 - name: Add iTerm2 to Dock
-  shell: dockutil --find 'iTerm2' || dockutil --add '~/Applications/iTerm.app'
+  shell: dockutil --find 'iTerm2' || dockutil --add '/Applications/iTerm.app'
   changed_when: False
   when: ansible_distribution == 'MacOSX'
