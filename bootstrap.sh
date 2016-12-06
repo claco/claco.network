@@ -28,7 +28,6 @@ fi
 if [ ! -f /usr/local/bin/brew ]; then
   echo "Installing Homebrew..."
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  brew tap phinze/homebrew-cask
   brew install brew-cask
   brew cask install caskroom/fonts/font-symbola
 else
