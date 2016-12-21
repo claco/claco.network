@@ -18,3 +18,11 @@
   shell: cp -f /tmp/hub-linux-amd64-{{ hub_version }}/bin/hub {{ hub_bin_directory }}
   when: hub_download.changed and ansible_distribution != 'MacOSX'
   tags: hub-install
+
+- name: Create Hub Config Directory
+  file: name={{ hub_config_directory }} state=directory mode=0700
+  tags: hub-config
+
+- name: Configure Hub
+  template: src=hub.j2 dest={{ hub_config_directory }}/hub mode=0600
+  tags: hub-config
