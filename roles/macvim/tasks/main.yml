@@ -1,6 +1,6 @@
 ---
 - name: Install Required Packages | Homebrew
-  homebrew_cask: name=macvim state=present
+  homebrew: name=macvim state=present
   when: ansible_distribution == 'MacOSX'
 
 - name: Add MacVim to Dock
