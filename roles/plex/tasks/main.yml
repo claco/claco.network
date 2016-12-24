@@ -11,6 +11,6 @@
   when: ansible_distribution != 'MacOSX'
 
 - name: Add Plex to Dock
-  shell: dockutil --find 'Plex Home Theater' || dockutil --add '/Applications/Plex Home Theater.app'
+  shell: dockutil --find 'Plex Media Player' || dockutil --add '/Applications/Plex Media Player.app'
   changed_when: False
   when: ansible_distribution == 'MacOSX'

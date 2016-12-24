@@ -1,4 +1,4 @@
 ---
 plex_required_packages:
   macosx:
-    - plex-home-theater
+    - plex-media-player
