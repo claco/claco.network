@@ -9,9 +9,10 @@ python_default_packages:
 python_versions_directory: '{{ pyenv_versions_directory }}'
 python_versions:
   - 2.7.10
-  - 2.7.12
+  - 2.7.13
   - 3.4.5
   - 3.5.2
+  - 3.6.0
 python_default_version: system
 python_required_packages:
   macosx:
