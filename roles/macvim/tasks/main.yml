@@ -2,6 +2,11 @@
 - name: Install Required Packages | Homebrew
   homebrew: name=macvim state=present
   when: ansible_distribution == 'MacOSX'
+  register: macvim_install
+
+- name: Link MacVim | Homebrew
+  command: brew linkapps macvim
+  when: macvim_install.changed
 
 - name: Add MacVim to Dock
   shell: dockutil --find 'MacVim' || dockutil --add '/Applications/MacVim.app'
