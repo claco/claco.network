@@ -16,11 +16,11 @@
   no_log: True
   tags: onepassword-config
 
-- name: Register 1Password License
-  shell: sleep 10 && open {{ onepassword_license_file }} && sleep 5 && osascript -e 'quit app "1Password 6"'
-  changed_when: False
-  when: ansible_distribution == 'MacOSX'
-  tags: onepassword-config
+#- name: Register 1Password License
+  #shell: sleep 10 && open {{ onepassword_license_file }} && sleep 5 && osascript -e 'quit app "1Password 6"'
+  #changed_when: False
+  #when: ansible_distribution == 'MacOSX'
+  #tags: onepassword-config
 
 - name: Configure 1Password Defaults
   osx_defaults:
