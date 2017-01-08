@@ -1,6 +1,6 @@
 ---
 - name: Install Required Packages | Homebrew
-  homebrew: name=macvim state=present
+  homebrew: name=macvim state=latest
   when: ansible_distribution == 'MacOSX'
   register: macvim_install
 
