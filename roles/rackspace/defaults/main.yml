@@ -1,3 +1,4 @@
 ---
 rackspace_credentials_directory: '{{ ansible_env.HOME }}/.rackspace'
 rackspace_credentials: {}
+rackspace_region: IAD

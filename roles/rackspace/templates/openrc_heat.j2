@@ -1,0 +1,10 @@
+# {{ ansible_managed }}
+export OS_AUTH_URL=https://identity.api.rackspacecloud.com/v2.0/
+export OS_AUTH_SYSTEM="rackspace"
+export OS_REGION_NAME="{{ item.value.region | default(rackspace_region) }}"
+export OS_USERNAME="{{ item.value.username }}"
+export OS_TENANT_NAME="{{ item.value.tenant_id }}"
+export NOVA_RAX_AUTH=1
+export OS_PASSWORD="{{ item.value.password }}"
+export OS_PROJECT_ID=""
+export OS_NO_CACHE=1

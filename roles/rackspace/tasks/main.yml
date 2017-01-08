@@ -7,3 +7,13 @@
   template: src=credentials.j2 dest={{ rackspace_credentials_directory }}/{{ item.key }} mode=0600
   with_dict: '{{ rackspace_credentials }}'
   tags: rackspace-config
+
+- name: Create OpenStack Credentials (Nova)
+  template: src=openrc.j2 dest={{ rackspace_credentials_directory }}/openrc_{{ item.key }} mode=0600
+  with_dict: '{{ rackspace_credentials }}'
+  tags: rackspace-config
+
+- name: Create OpenStack Credentials (Heat)
+  template: src=openrc_heat.j2 dest={{ rackspace_credentials_directory }}/openrc_{{ item.key }}_heat mode=0600
+  with_dict: '{{ rackspace_credentials }}'
+  tags: rackspace-config
