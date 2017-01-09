@@ -125,7 +125,7 @@ def get_gpg_cmd(m, homedir, options):
     '''Generate and return an array with the path to ``gpg2`` (preferred) or
     ``gpg`` (fallback), along with basic arguments that are common across
     subcommands.'''
-    cmd = [m.get_bin_path('gpg', required=True)]
+    cmd = [m.get_bin_path('gpg2', required=True)]
     if homedir is not None:
         cmd += ['--homedir', homedir]
     if options is not None:

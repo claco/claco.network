@@ -31,3 +31,9 @@
   with_dict: '{{ gpg_private_keys }}'
   no_log: True
   tags: gpg-config
+
+- name: Configure GPG In Git
+  template: src=gpg.j2 dest='{{ git_config_directory }}/gpg' mode=0600
+  notify:
+    - load git configs
+    - reconfigure git
