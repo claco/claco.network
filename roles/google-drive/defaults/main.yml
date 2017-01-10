@@ -1,0 +1,4 @@
+---
+google_drive_required_packages:
+  macosx:
+    - google-drive

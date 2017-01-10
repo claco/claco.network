@@ -1,0 +1,16 @@
+---
+- name: Install Required Packages | Packages
+  homebrew_cask: name={{ item }} state=present
+  with_items: '{{ google_drive_required_packages[ansible_distribution | lower] | default([]) }}'
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install Required Packages | Packages
+  package: name={{ item }} state=latest
+  become: yes
+  with_items: '{{ google_drive_required_packages[ansible_distribution | lower] | default([]) }}'
+  when: ansible_distribution != 'MacOSX'
+
+- name: Add Google Drive to Dock
+  shell: dockutil --find 'Google Drive' || dockutil --add '/Applications/Google Drive.app'
+  changed_when: False
+  when: ansible_distribution == 'MacOSX'
