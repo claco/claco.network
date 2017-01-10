@@ -23,7 +23,7 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: chrome }
+         - { role: google-chrome }
 
 License
 -------

@@ -1,16 +1,16 @@
 ---
 - name: Install Required Packages | Packages
   homebrew_cask: name={{ item }} state=present
-  with_items: '{{ chrome_required_packages[ansible_distribution | lower] | default([]) }}'
+  with_items: '{{ google_chrome_required_packages[ansible_distribution | lower] | default([]) }}'
   when: ansible_distribution == 'MacOSX'
 
 - name: Install Required Packages | Packages
   package: name={{ item }} state=latest
   become: yes
-  with_items: '{{ chrome_required_packages[ansible_distribution | lower] | default([]) }}'
+  with_items: '{{ google_chrome_required_packages[ansible_distribution | lower] | default([]) }}'
   when: ansible_distribution != 'MacOSX'
 
-- name: Add Chrome to Dock
+- name: Add Google Chrome to Dock
   shell: dockutil --find 'Google Chrome' || dockutil --add '/Applications/Google Chrome.app'
   changed_when: False
   when: ansible_distribution == 'MacOSX'

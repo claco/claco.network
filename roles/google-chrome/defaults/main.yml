@@ -1,5 +1,5 @@
 ---
-chrome_required_packages:
+google_chrome_required_packages:
   macosx:
     - google-chrome
     - google-hangouts
