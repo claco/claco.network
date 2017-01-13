@@ -1,11 +1,11 @@
 ---
 - name: Install Vim | Homebrew
-  package: name={{ item}} state=latest
+  package: name={{ item }} state=latest
   with_items: '{{ vim_packages[ansible_distribution | lower] | default([]) }}'
   when: ansible_distribution == 'MacOSX'
 
 - name: Install Vim | Package
-  package: name={{ item}} state=latest
+  package: name={{ item }} state=latest
   with_items: '{{ vim_packages[ansible_distribution | lower] | default([]) }}'
   become: yes
   when: ansible_distribution != 'MacOSX'
