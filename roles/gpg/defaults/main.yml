@@ -4,6 +4,7 @@ gpg_private_keys: {}
 gpg_public_keys: {}
 gpg_required_packages:
   macosx:
+    - libusb
     - gpg
     - gpg2
     - gpg-agent
