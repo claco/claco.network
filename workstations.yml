@@ -3,6 +3,7 @@
   hosts: workstations
   tags: workstations
   roles:
+    - { role: homebrew,      tags: homebrew }
     - { role: ack,           tags: ack }
     - { role: ag,            tags: ag }
     - { role: bash,          tags: bash }
