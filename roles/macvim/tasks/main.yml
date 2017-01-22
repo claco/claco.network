@@ -9,6 +9,6 @@
   when: macvim_install.changed
 
 - name: Add MacVim to Dock
-  shell: dockutil --find 'MacVim' || dockutil --add '/Applications/MacVim.app'
+  shell: dockutil --add '/Applications/MacVim.app' --label 'MacVim' --replacing 'MacVim'
   changed_when: False
   when: ansible_distribution == 'MacOSX'

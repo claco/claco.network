@@ -11,6 +11,6 @@
   when: ansible_distribution != 'MacOSX'
 
 - name: Add Postgres to Dock
-  shell: dockutil --find 'Postgres' || dockutil --add '/Applications/Postgres.app'
+  shell: dockutil --add '/Applications/Postgres.app' --label 'Postgres' --replacing 'Postgres'
   changed_when: False
   when: ansible_distribution == 'MacOSX'

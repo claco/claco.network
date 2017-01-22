@@ -33,6 +33,6 @@
     value: 480
 
 - name: Add Flux to Dock
-  shell: dockutil --find 'Flux' || dockutil --add '/Applications/Flux.app'
+  shell: dockutil --add '/Applications/Flux.app' --label 'Flux' --replacing 'Flux'
   changed_when: False
   when: ansible_distribution == 'MacOSX'

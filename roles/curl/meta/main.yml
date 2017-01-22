@@ -11,4 +11,5 @@ galaxy_info:
   categories:
     - development
     - system
-dependencies: []
+dependencies:
+  - { role: homebrew, when: ansible_pkg_mgr == 'homebrew' }

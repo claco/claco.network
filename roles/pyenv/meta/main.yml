@@ -12,6 +12,6 @@ galaxy_info:
     - development
     - system
 dependencies:
-  - { role: build-essential }
   - { role: bash }
+  - { role: build-essential }
   - { role: git }

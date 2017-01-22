@@ -11,6 +11,6 @@
   when: ansible_distribution != 'MacOSX'
 
 - name: Add Google Chrome to Dock
-  shell: dockutil --find 'Google Chrome' || dockutil --add '/Applications/Google Chrome.app'
+  shell: dockutil --add '/Applications/Google Chrome.app' --label 'Google Chrome' --replacing 'Google Chrome'
   changed_when: False
   when: ansible_distribution == 'MacOSX'

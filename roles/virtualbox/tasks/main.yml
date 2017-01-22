@@ -4,6 +4,6 @@
   when: ansible_distribution == 'MacOSX'
 
 - name: Add VirtualBox to Dock
-  shell: dockutil --find 'VirtualBox' || dockutil --add '/Applications/VirtualBox.app'
+  shell: dockutil --add '/Applications/VirtualBox.app' --label 'VirtualBox' --replacing 'VirtualBox'
   changed_when: False
   when: ansible_distribution == 'MacOSX'

@@ -17,7 +17,7 @@
   tags: terminal-config
 
 - name: Add Terminal to Dock
-  shell: dockutil --find 'Terminal' || dockutil --add '/Applications/Utilities/Terminal.app'
+  shell: dockutil --add '/Applications/Utilities/Terminal.app' --label 'Terminal' --replacing 'Terminal'
   changed_when: False
   when: ansible_distribution == 'MacOSX'
   tags: terminal-config

@@ -22,6 +22,6 @@ galaxy_info:
     - development
     - system
 dependencies:
-  - build-essential
   - bash
+  - build-essential
   - git

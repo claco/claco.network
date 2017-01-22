@@ -35,7 +35,7 @@
   tags: onepassword-config
 
 - name: Add 1Password to Dock
-  shell: dockutil --find '1Password' || dockutil --add '/Applications/1Password 6.app'
+  shell: dockutil --add '/Applications/1Password 6.app' --label '1Password' --replacing '1Password'
   changed_when: False
   when: ansible_distribution == 'MacOSX'
   tags: onepassword-config

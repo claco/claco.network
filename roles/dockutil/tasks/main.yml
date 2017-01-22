@@ -6,3 +6,8 @@
 - name: Remove Everything From Dock
   shell: dockutil --remove all
   changed_when: False
+  tags: dockutil-remove-all
+
+- name: Add Downloads Folder
+  shell: dockutil --add '~/Downloads' --view list --display folder --section others --label 'Downloads' --replacing 'Downloads'
+  changed_when: False

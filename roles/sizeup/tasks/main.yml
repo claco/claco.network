@@ -27,7 +27,7 @@
   tags: sizeup-config
 
 - name: Add SizeUp to Dock
-  shell: dockutil --find 'SizeUp' || dockutil --add '/Applications/SizeUp.app'
+  shell: dockutil --add '/Applications/SizeUp.app' --label 'SizeUp' --replacing 'SizeUp'
   changed_when: False
   when: ansible_distribution == 'MacOSX'
   tags: sizeup-config

@@ -12,7 +12,8 @@ galaxy_info:
     - development
     - system
 dependencies:
-  - dockutil
-  - fonts
-  - solarized
-  - tmux
+  - { role: dockutil, when: ansible_pkg_mgr == 'homebrew' }
+  - { role: homebrew, when: ansible_pkg_mgr == 'homebrew' }
+  - { role: fonts }
+  - { role: solarized }
+  - { role: tmux }

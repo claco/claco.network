@@ -46,6 +46,6 @@
     value: True
 
 - name: Add Cloak to Dock
-  shell: dockutil --find 'Cloak' || dockutil --add '/Applications/Cloak.app'
+  shell: dockutil --add '/Applications/Cloak.app' --label 'Cloak' --replacing 'Cloak'
   changed_when: False
   when: ansible_distribution == 'MacOSX'

@@ -13,3 +13,4 @@ galaxy_info:
     - system
 dependencies:
   - { role: aspell }
+  - { role: homebrew, when: ansible_pkg_mgr == 'homebrew' }

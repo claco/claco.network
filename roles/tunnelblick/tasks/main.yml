@@ -4,6 +4,6 @@
   when: ansible_distribution == 'MacOSX'
 
 - name: Add Tunnelblick to Dock
-  shell: dockutil --find 'Tunnelblick' || dockutil --add '/Applications/Tunnelblick.app'
+  shell: dockutil --add '/Applications/Tunnelblick.app' --label 'Tunnelblick' --replacing 'Tunnelblick'
   changed_when: False
   when: ansible_distribution == 'MacOSX'

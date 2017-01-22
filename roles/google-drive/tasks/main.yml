@@ -11,6 +11,6 @@
   when: ansible_distribution != 'MacOSX'
 
 - name: Add Google Drive to Dock
-  shell: dockutil --find 'Google Drive' || dockutil --add '/Applications/Google Drive.app'
+  shell: dockutil --add '/Applications/Google Drive.app' --label 'Google Drive' --replacing 'Google Drive'
   changed_when: False
   when: ansible_distribution == 'MacOSX'

@@ -12,4 +12,5 @@ galaxy_info:
     - development
     - system
 dependencies:
+  - { role: homebrew, when: ansible_pkg_mgr == 'homebrew' }
   - { role: rbenv, tags: rbenv, rbenv_default_gems: '{{ ruby_default_gems }}' }

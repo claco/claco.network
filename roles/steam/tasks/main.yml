@@ -4,6 +4,6 @@
   when: ansible_distribution == 'MacOSX'
 
 - name: Add Steam to Dock
-  shell: dockutil --find 'Steam' || dockutil --add '/Applications/Steam.app'
+  shell: dockutil --add '/Applications/Steam.app' --label 'Steam' --replacing 'Steam'
   changed_when: False
   when: ansible_distribution == 'MacOSX'

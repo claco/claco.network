@@ -12,4 +12,5 @@ galaxy_info:
     - development
     - system
 dependencies:
+  - { role: homebrew, when: ansible_pkg_mgr == 'homebrew' }
   - { role: plenv, tags: plenv }

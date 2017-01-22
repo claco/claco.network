@@ -18,6 +18,6 @@
     value: '{{ alfred_sync_folder }}'
 
 - name: Add Alfred to Dock
-  shell: dockutil --find 'Alfred' || dockutil --add '/Applications/Alfred 3.app'
+  shell: dockutil --add '/Applications/Alfred 3.app' --label 'Alfred' --replacing 'Alfred'
   changed_when: False
   when: ansible_distribution == 'MacOSX'

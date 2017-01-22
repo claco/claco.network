@@ -7,6 +7,6 @@
   pip: name=docker-py state=latest
 
 - name: Add Docker to Dock
-  shell: dockutil --find 'Docker' || dockutil --add '/Applications/Docker.app'
+  shell: dockutil --add '/Applications/Docker.app' --label 'Docker' --replacing 'Docker'
   changed_when: False
   when: ansible_distribution == 'MacOSX'
