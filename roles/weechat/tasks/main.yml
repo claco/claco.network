@@ -5,7 +5,7 @@
   when: ansible_distribution == 'MacOSX'
 
 - name: Install Required Packages | Homebrew
-  homebrew: name=weechat install_options='--with-aspell' state=latest
+  homebrew: name=weechat install_options='with-aspell,with-perl,with-python,with-ruby' state=latest
   when: ansible_distribution == 'MacOSX'
 
 - name: Install Required Packages | Packages
