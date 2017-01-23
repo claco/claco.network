@@ -25,6 +25,7 @@
     - aspell
     - charset
     - exec
+    - fifo
     - irc
     - logger
     - otr
