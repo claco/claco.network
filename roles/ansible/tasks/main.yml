@@ -1,0 +1,19 @@
+---
+# package/homebrew chokes up an invalid package name error
+# forcing this workaround for now
+- name: Update Specific OpenSSL Package
+  command: brew upgrade openssl@1.1
+  ignore_errors: True
+  changed_when: False
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install Required Packages | Homebrew
+  package: name={{ item }} state=latest
+  with_items: '{{ ansible_required_packages[ansible_distribution | lower] | default([]) }}'
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install Required Packages | Packages
+  package: name={{ item }} state=latest
+  become: yes
+  with_items: '{{ ansible_required_packages[ansible_distribution | lower] | default([]) }}'
+  when: ansible_distribution != 'MacOSX'

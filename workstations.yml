@@ -3,6 +3,7 @@
   hosts: workstations
   tags: workstations
   roles:
+    - { role: ansible,       tags: ansible        }
     - { role: ack,           tags: ack            }
     - { role: ag,            tags: ag             }
     - { role: bash,          tags: bash           }
