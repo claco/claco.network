@@ -1,2 +1,7 @@
 ---
 tmux_config_file: '{{ ansible_env.HOME }}/.tmux.conf'
+tmux_required_packages:
+  macosx:
+    - libevent
+  fedora:
+  ubuntu:
