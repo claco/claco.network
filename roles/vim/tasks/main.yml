@@ -44,8 +44,8 @@
     - moria256
   tags: vim-config
 
-- name: Install Pathogen
-  get_url: url=https://tpo.pe/pathogen.vim dest={{ vim_config_directory }}/autoload/pathogen.vim force=yes
+- name: Install Plugin Manager
+  get_url: url={{ vim_plugin_manager_source }} dest={{ vim_config_directory }}/autoload/pathogen.vim force=yes
   tags: vim-pathogen
 
 - name: Install Vim Plugins
