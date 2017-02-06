@@ -6,6 +6,7 @@ python_default_packages:
   - pip
   - wheel
   - flake8
+  - pipenv
 python_versions_directory: '{{ pyenv_versions_directory }}'
 python_versions:
   - 2.7.10
