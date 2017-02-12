@@ -6,7 +6,6 @@ gpg_required_packages:
   macosx:
     - libgcrypt
     - libusb
-    - gpg
     - gpg2
     - gpg-agent
   fedora:
