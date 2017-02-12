@@ -8,10 +8,14 @@ PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
 export PATH
 
-for bash_profile in {{ bash_profile_directory }}/*; do
-  source ${bash_profile}
-done
+if [ "$(ls -A {{ bash_profile_directory }})" ]; then
+  for bash_profile in {{ bash_profile_directory }}/*; do
+    source ${bash_profile}
+  done
+fi
 
-for bash_completion in {{ bash_completion_directory}}/*; do
-  source ${bash_completion}
-done
+if [ "$(ls -A {{ bash_completion_directory }})" ]; then
+  for bash_completion in {{ bash_completion_directory}}/*; do
+    source ${bash_completion}
+  done
+fi
