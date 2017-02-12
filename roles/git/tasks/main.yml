@@ -44,14 +44,14 @@
 
 - name: Enable Git Auto Completion
   file:
-    path: '{{ bash_completion_directory }}/git'
+    path: '{{ git_completion_file }}'
     src: '{% if ansible_distribution == "MacOSX" %}/usr/local/etc/bash_completion.d/git-completion.bash{% else %}/usr/share/doc/git-core-doc/contrib/completion/git-completion.bash{% endif %}'
     state: link
   tags: git-config
 
 - name: Enable Git Prompt
   file:
-    path: '{{ bash_completion_directory }}/git-prompt'
+    path: '{{ git_prompt_file }}'
     src: '{% if ansible_distribution == "MacOSX" %}/usr/local/etc/bash_completion.d/git-prompt.sh{% else %}/usr/share/doc/git-core-doc/contrib/completion/git-prompt.sh{% endif %}'
     state: link
   tags: git-config

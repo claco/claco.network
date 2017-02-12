@@ -37,6 +37,12 @@ UC=$W                 # user's color
 
 
 function __git_branch {
+ if [ -f {{ git_prompt_file }} ]; then
+   source {{ git_prompt_file }}
+ else
+   return
+ fi
+
  local dirty=$(git status --porcelain --ignore-submodules 2>/dev/null)
  local color="$G"
 

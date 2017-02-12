@@ -2,6 +2,8 @@
 git_config_directory: '{{ ansible_env.HOME }}/.gitconfig.d'
 git_config_file: '{{ ansible_env.HOME }}/.gitconfig'
 git_exludes_file: '{{ ansible_env.HOME }}/.gitexcludes'
+git_completion_file: '{{ bash_completion_directory }}/git'
+git_prompt_file: '{{ bash_completion_directory }}/git-prompt'
 git_github_user:
 git_github_token:
 git_required_packages:
