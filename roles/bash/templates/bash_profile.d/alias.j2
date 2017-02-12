@@ -2,7 +2,9 @@
 
 alias wget='wget -c'
 alias ssh='TERM=xterm ssh'
-alias git=hub
+if [ $(which hub) ]; then
+  alias git=hub
+fi
 alias cls='clear'
 {% if ansible_distribution == 'MacOSX' %}
 alias ls='ls -lhtG'
