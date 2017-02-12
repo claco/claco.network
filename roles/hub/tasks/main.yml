@@ -1,11 +1,12 @@
 ---
-- name: Create Bin Directory
-  file: name={{ hub_bin_directory }} state=directory
-  tags: hub-install
-
 - name: Install Hub | Homebrew
   package: name=hub state=latest
   when: ansible_distribution == 'MacOSX'
+  tags: hub-install
+
+- name: Create Bin Directory
+  file: name={{ hub_bin_directory }} state=directory
+  when: ansible_distribution != 'MacOSX'
   tags: hub-install
 
 - name: Download Hub Package
