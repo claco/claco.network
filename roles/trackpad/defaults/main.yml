@@ -2,7 +2,7 @@
 trackpad_defaults:
   macosx:
     - { key: CenterRelativeResizeEnabled, value: 1, type: bool }
-    - { key: Clicking, value: 1, type: bool }
+    - { key: Clicking, value: 1, type: int }
       #    - { key: DragLock, value: 0, type: bool }
       #    - { key: Dragging, value: 0, type: bool }
     - { key: TrackpadCornerSecondaryClick, value: 0, type: int }
