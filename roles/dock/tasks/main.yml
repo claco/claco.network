@@ -1,0 +1,48 @@
+---
+- name: Dock | Set Tile Size
+  osx_defaults:
+    domain: com.apple.dock
+    key: tilesize
+    type: float
+    value: 16
+  notify: Restart Dock
+
+- name: Dock | Set Auto Hide
+  osx_defaults:
+    domain: com.apple.dock
+    key: autohide
+    type: bool
+    value: True
+  notify: Restart Dock
+
+- name: Dock | Set Delay
+  osx_defaults:
+    domain: com.apple.dock
+    key: autohide-delay
+    type: float
+    value: .1
+  notify: Restart Dock
+
+- name: Dock | Set Transparency
+  osx_defaults:
+    domain: com.apple.dock
+    key: hide-mirror
+    type: bool
+    value: True
+  notify: Restart Dock
+
+- name: Dock | Zoom On Hover
+  osx_defaults:
+    domain: com.apple.dock
+    key: magnification
+    type: bool
+    value: True
+  notify: Restart Dock
+
+- name: Dock | Minimize To Applications
+  osx_defaults:
+    domain: com.apple.dock
+    key: minimize-to-application
+    type: bool
+    value: True
+  notify: Restart Dock

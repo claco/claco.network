@@ -48,3 +48,4 @@
     - { role: tunnelblick,   tags: tunnelblick,   when: ansible_distribution == 'MacOSX' }
     - { role: p4merge,       tags: p4merge,       when: ansible_distribution == 'MacOSX' }
     - { role: trackpad,      tags: trackpad,      when: ansible_distribution == 'MacOSX' }
+    - { role: dock,          tags: dock,          when: ansible_distribution == 'MacOSX'  }
