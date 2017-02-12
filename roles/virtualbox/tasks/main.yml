@@ -1,6 +1,9 @@
 ---
 - name: Install Required Packages | Homebrew
-  homebrew_cask: name=virtualbox state=present
+  homebrew_cask: name={{ item  }} state=present
+  with_items:
+    - virtualbox
+    - virtualbox-extension-pack
   when: ansible_distribution == 'MacOSX'
 
 - name: Add VirtualBox to Dock
