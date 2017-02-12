@@ -29,7 +29,7 @@
     - { role: plex,          tags: plex           }
     - { role: docker,        tags: docker         }
     - { role: alfred,        tags: alfred,        when: ansible_distribution == 'MacOSX' }
-    - { role: boom,          tags: boom,          when: ansible_distribution == 'MacOSX' }
+#   - { role: boom,          tags: boom,          when: ansible_distribution == 'MacOSX' }
     - { role: caffeine,      tags: caffeine,      when: ansible_distribution == 'MacOSX' }
     - { role: cloak,         tags: cloak,         when: ansible_distribution == 'MacOSX' }
     - { role: google-chrome, tags: google-chrome, when: ansible_distribution == 'MacOSX' }
