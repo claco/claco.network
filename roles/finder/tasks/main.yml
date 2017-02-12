@@ -1,0 +1,97 @@
+---
+- name: Finder | Show Hidden Files
+  osx_defaults:
+    domain: com.apple.finder
+    key: AppleShowAllFiles
+    type: bool
+    value: True
+  notify: Restart Finder
+
+- name: Finder | Show File Extensions
+  osx_defaults:
+    domain: NSGlobalDomain
+    key: AppleShowAllExtensions
+    type: bool
+    value: True
+  notify: Restart Finder
+
+- name: Finder | Show Status Bar
+  osx_defaults:
+    domain: com.apple.finder
+    key: ShowStatusBar
+    type: bool
+    value: True
+  notify: Restart Finder
+
+- name: Finder | Show Path Bar
+  osx_defaults:
+    domain: com.apple.finder
+    key: ShowPathbar
+    type: bool
+    value: True
+  notify: Restart Finder
+
+- name: Finder | Use Column View
+  osx_defaults:
+    domain: com.apple.finder
+    key: FXPreferredViewStyle
+    type: string
+    value: "clmv"
+  notify: Restart Finder
+
+- name: Finder | Delete Old Trash
+  osx_defaults:
+    domain: com.apple.finder
+    key: FXRemoveOldTrashItems
+    type: bool
+    value: True
+  notify: Restart Finder
+
+- name: Finder | Show Server Drives
+  osx_defaults:
+    domain: com.apple.finder
+    key: ShowMountedServersOnDesktop
+    type: bool
+    value: True
+  notify: Restart Finder
+
+- name: Finder | Set Default Window Location
+  osx_defaults:
+    domain: com.apple.finder
+    key: "{{ item.key }}"
+    type: string
+    value: "{{ item.value }}"
+  with_items:
+    - key: NewWindowTarget
+      value: PfDe
+    - key: NewWindowTargetPath
+      value: "file://{{ ansible_env.HOME }}/Desktop"
+  notify: Restart Finder
+
+- name: Finder | Enable Zoom
+  osx_defaults:
+    domain: com.apple.universalaccess
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+  with_items:
+    - key: closeViewScrollWheelToggle
+      type: bool
+      value: True
+    - key: HIDScrollZoomModifierMask
+      type: int
+      value: 262144
+
+- name: Zoom Follows Pointer
+  osx_defaults:
+    domain: com.apple.universalaccess
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+  with_items:
+    - key: closeViewZoomFollowsFocus
+      type: bool
+      value: False
+    - key: closeViewPanningMode
+      type: int
+      value: 0

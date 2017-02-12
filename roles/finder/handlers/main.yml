@@ -1,0 +1,3 @@
+---
+- name: Restart Finder
+  command: killall -Kill Finder
