@@ -4,6 +4,7 @@ gpg_private_keys: {}
 gpg_public_keys: {}
 gpg_required_packages:
   macosx:
+    - libgpg-error
     - pinentry
     - libgcrypt
     - libusb

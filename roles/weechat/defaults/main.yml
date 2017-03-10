@@ -4,7 +4,9 @@ weechat_config_directory: '{{ ansible_env.HOME }}/.weechat'
 weechat_ssl_directory: '{{ weechat_config_directory }}/ssl'
 weechat_required_packages:
   macosx:
+    - libgpg-error
     - libtasn1
+    - p11-kit
     - gnutls
   fedora:
     - weechat
