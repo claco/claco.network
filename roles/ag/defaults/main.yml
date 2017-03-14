@@ -1,6 +1,7 @@
 ---
 ag_required_packages:
   macosx:
+    - pcre
     - xz
     - the_silver_searcher
   fedora:

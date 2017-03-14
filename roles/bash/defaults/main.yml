@@ -7,6 +7,7 @@ bash_completion_directory: '{{ ansible_env.HOME }}/.bash_completion.d'
 bash_profile_directory: '{{ ansible_env.HOME }}/.bash_profile.d'
 bash_required_packages:
   macosx:
+    - readline
     - bash
     - bash-completion
   fedora:
