@@ -12,6 +12,8 @@ vim_plugin_manager_source: 'https://raw.githubusercontent.com/tpope/vim-pathogen
 vim_plugins_directory: '{{ vim_config_directory }}/bundle'
 vim_packages:
   macosx:
+    - ruby
+    - python
     - gdbm
     - vim
   fedora:
