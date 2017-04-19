@@ -1,6 +1,7 @@
 ---
 ansible_required_packages:
   macosx:
+    - openssl@1.1
     - ansible
   fedora:
     - ansible
