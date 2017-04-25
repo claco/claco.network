@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: Christopher H. Laco
+  description: Install and configure Go
+  license: MIT
+  min_ansible_version: 2.0
+  platforms:
+    - name: Darwin
+      versions:
+        - all
+  categories:
+    - development
+    - system
+dependencies:
+  - { role: homebrew, when: ansible_pkg_mgr == 'homebrew' }
+  - { role: goenv, tags: goenv, goenv_default_packages: '{{ go_default_packages }}' }

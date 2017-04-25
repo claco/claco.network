@@ -1,0 +1,6 @@
+# {{ ansible_managed }}
+
+export GOENV_ROOT="{{ goenv_root_directory}}"
+export PATH="{{ goenv_bin_directory }}:$PATH"
+
+eval "$(goenv init -)"

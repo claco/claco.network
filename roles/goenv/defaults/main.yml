@@ -1,0 +1,10 @@
+---
+goenv_repo_url: 'https://github.com/syndbg/goenv.git'
+goenv_root_directory: '{{ ansible_env.HOME }}/.goenv'
+goenv_bin_directory: '{{ goenv_root_directory }}/bin'
+goenv_binary: '{{ goenv_bin_directory }}/goenv'
+goenv_completions_directory: '{{ goenv_root_directory }}/completions'
+goenv_plugins_directory: '{{ goenv_root_directory }}/plugins'
+goenv_versions_directory: '{{ goenv_root_directory }}/versions'
+goenv_plugins: []
+goenv_default_packages: []

@@ -1,0 +1,4 @@
+# {{ ansible_managed }}
+{% for packagespec in goenv_default_packages %}
+{{ packagespec }}
+{% endfor %}

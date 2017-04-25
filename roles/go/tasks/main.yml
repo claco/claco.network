@@ -1,0 +1,33 @@
+---
+- name: Install Required Packages | Homebrew
+  package: name={{ item }} state=latest
+  with_items: '{{ go_required_packages[ansible_distribution | lower] | default([]) }}'
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install Required Packages | Packages
+  package: name={{ item }} state=latest
+  become: yes
+  with_items: '{{ go_required_packages[ansible_distribution | lower] | default([]) }}'
+  when: ansible_distribution != 'MacOSX'
+
+- name: Install Go Versions
+  shell: "{{ go_install_command }} {{ item }}"
+  args:
+    creates: "{{ go_versions_directory }}/{{ item }}"
+  with_items: '{{ go_versions }}'
+  tags: go-install
+  notify: rehash goenv
+
+- name: Configure Default Version
+  template: src=version.j2 dest={{ goenv_root_directory }}/version
+  when: go_default_version is defined
+  tags: go-install, go-default-version
+  notify: rehash goenv
+
+  #- name: Install Default Packages | Ansible
+  #pip: name={{ item[1] }} executable={{ goenv_versions_directory }}/{{ item[0] }}/bin/go state=latest
+  #with_nested:
+  #  - '{{ go_versions }}'
+  #  - '{{ go_default_packages }}'
+  #tags: go-install, go-default-packages
+  #notify: rehash goenv

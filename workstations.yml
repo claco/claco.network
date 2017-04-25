@@ -20,6 +20,7 @@
     - { role: tmux,          tags: tmux           }
     - { role: rackspace,     tags: rackspace      }
     - { role: weechat,       tags: weechat        }
+    - { role: go,            tags: go             }
     - { role: ruby,          tags: ruby           }
     - { role: python,        tags: python         }
     - { role: perl,          tags: perl           }

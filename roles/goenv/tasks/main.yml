@@ -1,0 +1,24 @@
+---
+- name: Install GoEnv
+  git: repo={{ goenv_repo_url }} dest={{ goenv_root_directory }}
+  tags: goenv-install
+
+- name: Install GoEnv Plugins
+  git: repo={{ item.repo }} dest={{ goenv_plugins_directory}}/{{ item.dest }}
+  with_items: '{{ goenv_plugins }}'
+  tags: goenv-install-plugins
+
+- name: Configure Default Packages
+  template: src=default-packages.j2 dest={{ goenv_root_directory }}/default-packages
+  tags: goenv-default-packages
+
+- name: Configure Bash Profile
+  template: src=bash.j2 dest={{ bash_profile_directory }}/goenv
+  tags: goenv-bash-profile
+
+- name: Configure Bash Completions
+  file:
+    path: '{{ bash_completion_directory }}/goenv'
+    src: '{{ goenv_completions_directory }}/goenv.bash'
+    state: link
+  tags: goenv-bash-completion

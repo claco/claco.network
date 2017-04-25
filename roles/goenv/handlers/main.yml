@@ -1,0 +1,3 @@
+---
+- name: rehash goenv
+  shell: '{{ goenv_bin_directory }}/goenv rehash'
