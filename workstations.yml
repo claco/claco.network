@@ -3,32 +3,32 @@
   hosts: workstations
   tags: workstations
   roles:
-    - { role: ansible,       tags: ansible        }
-    - { role: ack,           tags: ack            }
-    - { role: ag,            tags: ag             }
-    - { role: bash,          tags: bash           }
-    - { role: curl,          tags: curl           }
-    - { role: wget,          tags: wget           }
-    - { role: ssh,           tags: ssh            }
-    - { role: gpg,           tags: gpg            }
-    - { role: git,           tags: git            }
-    - { role: gist,          tags: gist           }
-    - { role: ghi,           tags: ghi            }
-    - { role: hub,           tags: hub            }
-    - { role: keybase,       tags: keybase        }
-    - { role: vim,           tags: vim            }
-    - { role: tmux,          tags: tmux           }
-    - { role: rackspace,     tags: rackspace      }
-    - { role: weechat,       tags: weechat        }
-    - { role: go,            tags: go             }
-    - { role: ruby,          tags: ruby           }
-    - { role: python,        tags: python         }
-    - { role: perl,          tags: perl           }
-    - { role: vagrant,       tags: vagrant        }
-    - { role: virtualbox,    tags: virtualbox     }
-    - { role: postgres,      tags: postgres       }
-    - { role: plex,          tags: plex           }
-    - { role: docker,        tags: docker         }
+    - { role: ansible,       tags: ansible             }
+    - { role: ack,           tags: ack                 }
+    - { role: ag,            tags: ag                  }
+    - { role: bash,          tags: bash                }
+    - { role: curl,          tags: curl                }
+    - { role: wget,          tags: wget                }
+    - { role: ssh,           tags: ssh                 }
+    - { role: gpg,           tags: gpg                 }
+    - { role: git,           tags: git                 }
+    - { role: gist,          tags: gist                }
+    - { role: ghi,           tags: ghi                 }
+    - { role: hub,           tags: hub                 }
+    - { role: keybase,       tags: keybase             }
+    - { role: vim,           tags: vim                 }
+    - { role: tmux,          tags: tmux                }
+    - { role: rackspace,     tags: rackspace           }
+    - { role: weechat,       tags: weechat             }
+    - { role: go,            tags: [go,     languages] }
+    - { role: ruby,          tags: [ruby,   languages] }
+    - { role: python,        tags: [python, languages] }
+    - { role: perl,          tags: [perl,   languages] }
+    - { role: vagrant,       tags: vagrant             }
+    - { role: virtualbox,    tags: virtualbox          }
+    - { role: postgres,      tags: postgres            }
+    - { role: plex,          tags: plex                }
+    - { role: docker,        tags: docker              }
     - { role: alfred,        tags: alfred,        when: ansible_distribution == 'MacOSX' }
 #   - { role: boom,          tags: boom,          when: ansible_distribution == 'MacOSX' }
     - { role: caffeine,      tags: caffeine,      when: ansible_distribution == 'MacOSX' }
