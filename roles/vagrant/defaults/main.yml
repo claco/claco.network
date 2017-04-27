@@ -1,1 +1,6 @@
 ---
+vagrant_required_packages:
+  macosx:
+    - vagrant-completion
+  fedora:
+  ubuntu:

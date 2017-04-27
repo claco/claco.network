@@ -1,4 +1,22 @@
 ---
 - name: Install Required Packages | Homebrew
+  package: name={{ item }} state=latest
+  with_items: '{{ vagrant_required_packages[ansible_distribution | lower] | default([]) }}'
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install Required Packages | Packages
+  package: name={{ item }} state=latest
+  become: yes
+  with_items: '{{ vagrant_required_packages[ansible_distribution | lower] | default([]) }}'
+  when: ansible_distribution != 'MacOSX'
+
+- name: Install Vagrant | Homebrew
   homebrew_cask: name=vagrant state=present
   when: ansible_distribution == 'MacOSX'
+
+- name: Enable vagrant Auto Completion
+  file:
+    path: '{{ bash_completion_directory }}/vagrant'
+    src: '{% if ansible_distribution == "MacOSX" %}/usr/local/etc/bash_completion.d/vagrant{% else %}/usr/share/doc/vagrant/examples/bash_completion_vagrant.sh{% endif %}'
+    state: link
+  tags: vagrant-config

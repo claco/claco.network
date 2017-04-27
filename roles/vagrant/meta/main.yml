@@ -13,4 +13,5 @@ galaxy_info:
     - system
 dependencies:
   - { role: homebrew, when: ansible_pkg_mgr == 'homebrew' }
+  - { role: bash }
   - { role: virtualbox }
