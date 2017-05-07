@@ -9,6 +9,7 @@ gpg_required_packages:
     - pinentry
     - libgcrypt
     - libusb
+    - libusb-compat
     - gpg2
     - gpg-agent
   fedora:
