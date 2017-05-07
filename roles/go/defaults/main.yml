@@ -3,6 +3,6 @@ go_install_command: '{{ goenv_binary }} install'
 go_default_packages: []
 go_versions_directory: '{{ goenv_versions_directory }}'
 go_versions:
-  - 1.8.0
-go_default_version: 1.8.0
+  - 1.8.1
+go_default_version: 1.8.1
 go_required_packages:
