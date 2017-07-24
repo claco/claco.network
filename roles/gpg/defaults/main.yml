@@ -6,6 +6,7 @@ gpg_required_packages:
   macosx:
     - dirmngr
     - libgpg-error
+    - npth
     - pinentry
     - libgcrypt
     - libusb
