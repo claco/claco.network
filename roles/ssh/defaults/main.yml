@@ -13,7 +13,7 @@ ssh_required_packages:
     - openssh
     - openssh-server
   ubuntu:
-    - openssh
+    - openssh-client
     - openssh-server
 ssh_known_hosts:
   - qnap.claco.network
