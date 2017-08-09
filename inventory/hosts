@@ -5,4 +5,5 @@ blackpi ansible_user=pi
 
 [workstations]
 henchman21 ansible_user=claco    ansible_host=localhost ansible_connection=local
+henchman24 ansible_user=claco    ansible_host=localhost ansible_connection=local
 mqr13tg8wl ansible_user=chri5797 ansible_host=localhost ansible_connection=local
