@@ -2,7 +2,15 @@
 git_config_directory: '{{ ansible_env.HOME }}/.gitconfig.d'
 git_config_file: '{{ ansible_env.HOME }}/.gitconfig'
 git_exludes_file: '{{ ansible_env.HOME }}/.gitexcludes'
+git_completion_source_file:
+  macosx: '{{ bash_completion_source_directory[ansible_distribution | lower] }}/git-completion.bash'
+  fedora:
+  ubuntu: '{{ bash_completion_source_directory[ansible_distribution | lower] }}/git'
 git_completion_file: '{{ bash_completion_directory }}/git'
+git_prompt_source_file:
+  macosx: '/usr/local/etc/bash_completion.d/git-prompt.sh'
+  fedora: '/usr/share/doc/git-core-doc/contrib/completion/git-prompt.sh'
+  ubuntu: '/etc/bash_completion.d/git-prompt'
 git_prompt_file: '{{ bash_completion_directory }}/git-prompt'
 git_github_user:
 git_github_token:

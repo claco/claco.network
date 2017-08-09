@@ -4,6 +4,10 @@ bash_rc_file: '{{ ansible_env.HOME }}/.bashrc'
 bash_inputrc_file: '{{ ansible_env.HOME }}/.inputrc'
 bash_logout_file: '{{ ansible_env.HOME }}/.bash_logout'
 bash_completion_directory: '{{ ansible_env.HOME }}/.bash_completion.d'
+bash_completion_source_directory:
+  macosx: '/usr/local/etc/bash_completion.d'
+  fedora:
+  ubuntu: '/usr/share/bash-completion/completions'
 bash_profile_directory: '{{ ansible_env.HOME }}/.bash_profile.d'
 bash_required_packages:
   macosx:
