@@ -2,7 +2,11 @@
 
 set -e
 
-DIST=`lsb_release -is`
+if [ -x "$(command -v lsb_release)" ]; then
+  DIST=`lsb_release`
+else
+  DIST=""
+fi
 
 if [[ "$DIST" == "Ubuntu" ]]; then
   ################################################################################
