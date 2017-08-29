@@ -10,6 +10,7 @@
     - { role: curl,          tags: curl                }
     - { role: wget,          tags: wget                }
     - { role: ssh,           tags: ssh                 }
+    - { role: sed,           tags: sed                 }
     - { role: gpg,           tags: gpg                 }
     - { role: git,           tags: git                 }
     - { role: gist,          tags: gist                }

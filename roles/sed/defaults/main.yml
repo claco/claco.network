@@ -1,0 +1,6 @@
+---
+sed_required_packages:
+  macosx:
+    - gnu-sed
+  fedora:
+  ubuntu:
