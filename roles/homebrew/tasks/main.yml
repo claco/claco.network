@@ -3,3 +3,16 @@
   homebrew: update_homebrew=yes
   when: ansible_distribution == 'MacOSX'
   tags: update-homebrew
+
+- name: Find Homebrew Prefix Path
+  shell: "brew --prefix"
+  register: homebrew_prefix
+  changed_when: False
+  tags: homebrew-config
+
+- name: Enable Homebrew Auto Completion
+  file:
+    path: '{{ homebrew_completion_file }}'
+    src: '{{ homebrew_prefix.stdout }}/{{ homebrew_completion_source_file }}'
+    state: link
+  tags: homebrew-config

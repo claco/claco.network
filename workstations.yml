@@ -15,6 +15,7 @@
     - { role: git,           tags: git                 }
     - { role: gist,          tags: gist                }
     - { role: ghi,           tags: ghi                 }
+    - { role: homebrew,      tags: homebrew            }
     - { role: hub,           tags: hub                 }
     - { role: keybase,       tags: keybase             }
     - { role: vim,           tags: vim                 }
