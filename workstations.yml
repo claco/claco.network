@@ -3,11 +3,10 @@
   hosts: workstations
   tags: workstations
   roles:
+    - { role: system76,      tags: system76,      when: ansible_product_version == "galp2" }
     - { role: ansible,       tags: ansible             }
     - { role: ack,           tags: ack                 }
-    - { role: ag,            tags: ag                  }
-    - { role: bash,          tags: bash                }
-    - { role: curl,          tags: curl                }
+    - { role: ansible,       tags: ansible             }
     - { role: wget,          tags: wget                }
     - { role: ssh,           tags: ssh                 }
     - { role: sed,           tags: sed                 }
