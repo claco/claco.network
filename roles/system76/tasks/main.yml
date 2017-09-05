@@ -1,0 +1,11 @@
+---
+- name: Add System76 Repository
+  apt_repository: repo='ppa:system76-dev/stable' state='present'
+  become: yes
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Install Required Packages | Packages
+  package: name={{ item }} state=latest
+  become: yes
+  with_items: '{{ system76_required_packages[ansible_distribution | lower] | default([]) }}'
+  when: ansible_distribution == 'Ubuntu'

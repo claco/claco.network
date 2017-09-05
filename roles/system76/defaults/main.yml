@@ -1,0 +1,4 @@
+---
+system76_required_packages:
+  ubuntu:
+    - system76-driver
