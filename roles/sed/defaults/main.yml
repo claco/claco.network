@@ -4,3 +4,4 @@ sed_required_packages:
     - gnu-sed
   fedora:
   ubuntu:
+    - sed
