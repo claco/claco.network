@@ -3,7 +3,7 @@
 set -e
 
 if [ -x "$(command -v lsb_release)" ]; then
-  DIST=`lsb_release`
+  DIST=`lsb_release -si`
 else
   DIST=""
 fi
