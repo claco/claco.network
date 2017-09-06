@@ -4,7 +4,6 @@
   tags: workstations
   roles:
     - { role: system76,      tags: system76,      when: ansible_product_version == "galp2" }
-    - { role: ansible,       tags: ansible             }
     - { role: ack,           tags: ack                 }
     - { role: ansible,       tags: ansible             }
     - { role: wget,          tags: wget                }
