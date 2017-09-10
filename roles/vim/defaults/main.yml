@@ -38,3 +38,5 @@ vim_plugins:
   - { repo: 'https://github.com/ervandew/supertab.git', dest: 'vim-supertab' }
   - { repo: 'https://github.com/tpope/vim-surround.git', dest: 'vim-surround' }
   - { repo: 'https://github.com/scrooloose/syntastic.git', dest: 'vim-syntastic' }
+  - { repo: 'https://github.com/xolox/vim-session.git', dest: 'vim-session' }
+  - { repo: 'https://github.com/xolox/vim-misc.git', dest: 'vim-misc' }
