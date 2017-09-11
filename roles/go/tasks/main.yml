@@ -31,3 +31,18 @@
   #  - '{{ go_default_packages }}'
   #tags: go-install, go-default-packages
   #notify: rehash goenv
+
+- name: Load Installed Versions
+  shell: "{{ goenv_binary }} versions --bare"
+  register: goenv_installed_versions
+  changed_when: False
+  tags: go-cleanup
+
+- name: Remove Older Versions
+  shell: "{{ goenv_binary }} uninstall --force {{ item }}"
+  args:
+    removes: "{{ go_versions_directory }}/{{ item }}"
+  when: item not in go_versions
+  with_items: "{{ goenv_installed_versions.stdout_lines }}"
+  tags: go-cleanup
+  notify: rehash goenv
