@@ -39,3 +39,18 @@
     - '{{ python_default_packages }}'
   tags: python-install, python-default-packages
   notify: rehash pyenv
+
+- name: Load Installed Versions
+  shell: "{{ pyenv_binary }} versions --bare"
+  register: pyenv_installed_versions
+  changed_when: False
+  tags: python-cleanup
+
+- name: Remove Older Versions
+  shell: "{{ pyenv_binary }} uninstall --force {{ item }}"
+  args:
+    removes: "{{ python_versions_directory }}/{{ item }}"
+  when: item not in python_versions
+  with_items: "{{ pyenv_installed_versions.stdout_lines }}"
+  tags: python-cleanup
+  notify: rehash pyenv
