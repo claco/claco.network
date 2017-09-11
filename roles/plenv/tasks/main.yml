@@ -18,3 +18,18 @@
     src: '{{ plenv_completions_directory }}/plenv.bash'
     state: link
   tags: plenv-bash-completion
+
+- name: Load Installed Versions
+  shell: "{{ plenv_binary }} versions --bare"
+  register: plenv_installed_versions
+  changed_when: False
+  tags: perl-cleanup
+
+- name: Remove Older Versions
+  shell: "{{ plenv_binary }} uninstall -f {{ item }}"
+  args:
+    removes: "{{ perl_versions_directory }}/{{ item }}"
+  when: item not in perl_versions
+  with_items: "{{ plenv_installed_versions.stdout_lines }}"
+  tags: perl-cleanup
+  notify: rehash plenv
