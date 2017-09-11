@@ -35,3 +35,18 @@
     - '{{ ruby_default_gems }}'
   tags: ruby-install, ruby-default-gems
   notify: rehash rbenv
+
+- name: Load Installed Versions
+  shell: "{{ rbenv_binary }} versions --bare"
+  register: rbenv_installed_versions
+  changed_when: False
+  tags: ruby-cleanup
+
+- name: Remove Older Versions
+  shell: "{{ rbenv_binary }} uninstall --force {{ item }}"
+  args:
+    removes: "{{ ruby_versions_directory }}/{{ item }}"
+  when: item not in ruby_versions
+  with_items: "{{ rbenv_installed_versions.stdout_lines }}"
+  tags: ruby-cleanup
+  notify: rehash rbenv

@@ -2,7 +2,7 @@
 rbenv_repo_url: 'https://github.com/rbenv/rbenv.git'
 rbenv_root_directory: '{{ ansible_env.HOME }}/.rbenv'
 rbenv_bin_directory: '{{ rbenv_root_directory }}/bin'
-rbenv_binary: '{{ rbenv_binary }}/rbenv'
+rbenv_binary: '{{ rbenv_bin_directory }}/rbenv'
 rbenv_completions_directory: '{{ rbenv_root_directory }}/completions'
 rbenv_plugins_directory: '{{ rbenv_root_directory }}/plugins'
 rbenv_versions_directory: '{{ rbenv_root_directory }}/versions'
