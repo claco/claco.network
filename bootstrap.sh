@@ -2,6 +2,10 @@
 
 set -e
 
+sudo -v
+
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 if [ -x "$(command -v lsb_release)" ]; then
   DIST=`lsb_release -si`
 else
@@ -27,9 +31,6 @@ if [[ "$DIST" == "Ubuntu" ]]; then
 else
   export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
-  sudo -v
-
-  while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
   ################################################################################
   # Command Line Tools
@@ -100,6 +101,8 @@ if [ ! -d ~/Projects/claco.network/.git ]; then
   printf "Cloning Playbooks..."
   mkdir -p ~/Projects/claco.network
   git clone https://github.com/claco/claco.network.git ~/Projects/claco.network
+  pushd ~/Projects/claco.network > /dev/null
+  git remote set-url origin git@github.com:claco/claco.network.git
   echo "done"
 else
   echo "Ansible Playbooks already installed...skipping"
