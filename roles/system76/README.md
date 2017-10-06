@@ -1,7 +1,7 @@
-hub
-===
+system76
+========
 
-Install and configure the System76 drivers
+Install and configure System76 additions to base operating system
 
 Requirements
 ------------
@@ -11,9 +11,9 @@ None
 Role Variables
 --------------
 
+    system76_repository_url: "ppa:system76-dev/stable"
     system76_required_packages:
-      ubuntu:
-        - system76-driver
+      - "system76-driver"
 
 Dependencies
 ------------
@@ -23,7 +23,7 @@ None
 Example Playbook
 ----------------
 
-    - hosts: servers
+    - hosts: workstations
       roles:
          - { role: system76 } 
 

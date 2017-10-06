@@ -1,0 +1,6 @@
+---
+- name: Add Repository
+  apt_repository:
+    repo: "{{ system76_repository_url }}"
+    state: present
+  become: yes

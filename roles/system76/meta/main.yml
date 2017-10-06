@@ -1,13 +1,13 @@
 ---
 galaxy_info:
   author: Christopher H. Laco
-  description: Install and configure System76 drivers
+  description: Install and configure System76 additions to base operating system
   license: MIT
-  min_ansible_version: 2.0
+  min_ansible_version: 2.4.0.0
   platforms:
     - name: Ubuntu
       versions:
-        - all
+        - zesty
   categories:
     - system
 dependencies: []

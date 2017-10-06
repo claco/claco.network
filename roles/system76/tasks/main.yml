@@ -1,15 +1,24 @@
 ---
-- name: Add System76 Repository
-  apt_repository:
-    repo: '{{ system76_repository_url.ubuntu[system76_theme | lower] }}'
-    state: latest
-  become: yes
-  when: ansible_distribution == 'Ubuntu'
+- name: Load Variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - files:
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}.yml"
+        - "{{ ansible_os_family | lower }}.yml"
+        - "main.yml"
+      paths:
+        - "../vars"
+  tags:
+    - always
 
-- name: Install Required Packages | Packages
+- include_tasks: "{{ ansible_distribution | lower }}.yml"
+
+- name: Install Required Packages
   package:
-    name: '{{ item }}'
+    name: "{{ item }}"
     state: latest
   become: yes
-  with_items: '{{ system76_required_packages.ubuntu[system76_theme | lower] | default([]) }}'
-  when: ansible_distribution == 'Ubuntu'
+  with_items: "{{ system76_required_packages }}"

@@ -1,0 +1,4 @@
+---
+system76_repository_url: "ppa:system76-dev/stable"
+system76_required_packages:
+  - "system76-driver"
