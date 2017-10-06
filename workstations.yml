@@ -3,7 +3,7 @@
   hosts: workstations
   tags: workstations
   roles:
-    - { role: system76,      tags: system76,      when: ansible_product_version == "galp2" }
+    - { role: system76,      tags: system76, when: ansible_product_version is defined and ansible_product_version == "galp2" }
     - { role: ack,           tags: ack                 }
     - { role: ansible,       tags: ansible             }
     - { role: curl,          tags: curl                }
