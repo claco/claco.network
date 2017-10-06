@@ -6,6 +6,7 @@
     - { role: system76,      tags: system76,      when: ansible_product_version == "galp2" }
     - { role: ack,           tags: ack                 }
     - { role: ansible,       tags: ansible             }
+    - { role: curl,          tags: curl                }
     - { role: wget,          tags: wget                }
     - { role: ssh,           tags: ssh                 }
     - { role: sed,           tags: sed                 }
