@@ -1,0 +1,13 @@
+---
+galaxy_info:
+  author: Christopher H. Laco
+  description: Install and configure System76 Pop!_OS
+  license: MIT
+  min_ansible_version: 2.4.0.0
+  platforms:
+    - name: Ubuntu
+      versions:
+        - zesty
+  categories:
+    - system
+dependencies: []

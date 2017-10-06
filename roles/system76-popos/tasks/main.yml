@@ -1,0 +1,24 @@
+---
+- name: Load Variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - files:
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}.yml"
+        - "{{ ansible_os_family | lower }}.yml"
+        - "main.yml"
+      paths:
+        - "../vars"
+  tags:
+    - always
+
+- include_tasks: "{{ ansible_distribution | lower }}.yml"
+
+- name: Install Required Packages
+  package:
+    name: "{{ item }}"
+    state: latest
+  become: yes
+  with_items: "{{ system76_popos_required_packages }}"

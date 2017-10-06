@@ -1,0 +1,4 @@
+---
+system76_popos_repository_url: "ppa:system76/pop"
+system76_popos_required_packages:
+  - "pop-theme"
