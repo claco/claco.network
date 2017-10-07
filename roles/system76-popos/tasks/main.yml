@@ -10,9 +10,7 @@
         - "{{ ansible_os_family | lower }}.yml"
         - "main.yml"
       paths:
-        - "../vars"
-  tags:
-    - always
+        - "vars"
 
 - include_tasks: "{{ ansible_distribution | lower }}.yml"
 
@@ -22,3 +20,11 @@
     state: latest
   become: yes
   with_items: "{{ system76_popos_required_packages }}"
+
+
+- name: Configure Desktop Background
+  gsettings:
+    schema: "org.gnome.desktop.background"
+    key: "picture-uri"
+    value: "{{ system76_popos_desktop_background_uri }}"
+    state: present
