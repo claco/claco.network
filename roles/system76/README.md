@@ -14,6 +14,8 @@ Role Variables
     system76_repository_url: "ppa:system76-dev/stable"
     system76_required_packages:
       - "system76-driver"
+    system76_desktop_background_path: "/usr/share/backgrounds"
+    system76_desktop_background_uri: "file://{{ system76_desktop_background_path }}/{{ system76_desktop_background_file }}"
 
 Dependencies
 ------------
