@@ -1,0 +1,28 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+lint:
+  name: yamllint
+  options:
+    config-file: molecule/yaml-lint.yml
+platforms:
+  - name: desktop-zesty
+    box: ubuntu/zesty64
+  - name: desktop-artful
+    box: ubuntu/artful64
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+    options:
+      x: ANSIBLE0010
+scenario:
+  name: desktop
+verifier:
+  name: testinfra
+  lint:
+    name: flake8

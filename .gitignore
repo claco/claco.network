@@ -1,2 +1,7 @@
 facts
 *.retry
+.vagrant
+.molecule
+*.log
+*.pyc
+.cache
