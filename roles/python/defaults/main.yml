@@ -12,8 +12,8 @@ python_versions:
   - 2.7.10
   - 2.7.14
   - 3.3.7
-  - 3.4.7
-  - 3.5.4
+  - 3.4.8
+  - 3.5.5
   - 3.6.4
 python_default_version: system
 python_required_packages:
