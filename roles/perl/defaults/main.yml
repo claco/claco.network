@@ -8,7 +8,7 @@ perl_versions:
   - 5.20.3
   - 5.22.4
   - 5.24.3
-  - 5.26.1
+  - 5.26.2
 perl_default_version: system
 perl_default_modules:
   - Carton

@@ -14,7 +14,7 @@ python_versions:
   - 3.3.7
   - 3.4.8
   - 3.5.5
-  - 3.6.4
+  - 3.6.5
 python_default_version: system
 python_required_packages:
   macosx:
