@@ -12,12 +12,7 @@ Role Variables
 --------------
 
     ack_required_packages:
-      macosx:
-        - ack
-      fedora:
-        - ack
-      ubuntu:
-        - ack-grep
+      - ack-grep
 
 Dependencies
 ------------

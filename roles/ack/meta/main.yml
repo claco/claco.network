@@ -3,13 +3,16 @@ galaxy_info:
   author: Christopher H. Laco
   description: Install and configure Ack
   license: MIT
-  min_ansible_version: 2.0
+  min_ansible_version: 2.5
   platforms:
     - name: Darwin
       versions:
         - all
+    - name: Ubuntu
+      versions:
+        - bionic
   categories:
     - development
     - system
 dependencies:
-  - { role: homebrew, when: ansible_pkg_mgr == 'homebrew' }
+  - { role: homebrew, when: ansible_pkg_mgr == "homebrew" }

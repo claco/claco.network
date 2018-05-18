@@ -3,53 +3,53 @@
   hosts: workstations
   tags: workstations
   roles:
-    - { role: system76,       tags: system76, when: ansible_product_version is defined and ansible_product_version == "galp2", system76_desktop_background_file: "System76-Robot-by_Kate_Hazen_of_System76.png" }
-    - { role: system76-popos, tags: system76-popos, when: ansible_product_version is defined and ansible_product_version == "galp2" }
+#    - { role: system76,       tags: system76, when: ansible_product_version is defined and ansible_product_version == "galp2", system76_desktop_background_file: "System76-Robot-by_Kate_Hazen_of_System76.png" }
+#    - { role: system76-popos, tags: system76-popos, when: ansible_product_version is defined and ansible_product_version == "galp2" }
     - { role: ack,           tags: ack                 }
-    - { role: ansible,       tags: ansible             }
-    - { role: curl,          tags: curl                }
-    - { role: wget,          tags: wget                }
-    - { role: ssh,           tags: ssh                 }
-    - { role: sed,           tags: sed                 }
-    - { role: gpg,           tags: gpg                 }
-    - { role: git,           tags: git                 }
-    - { role: gist,          tags: gist                }
-    - { role: ghi,           tags: ghi                 }
-    - { role: homebrew,      tags: homebrew            }
-    - { role: hub,           tags: hub                 }
-    - { role: keybase,       tags: keybase             }
-    - { role: vim,           tags: vim                 }
-    - { role: tmux,          tags: tmux                }
-    - { role: rackspace,     tags: rackspace           }
-    - { role: weechat,       tags: weechat             }
-    - { role: go,            tags: [go,     languages] }
-    - { role: ruby,          tags: [ruby,   languages] }
-    - { role: python,        tags: [python, languages] }
-    - { role: perl,          tags: [perl,   languages] }
-    - { role: vagrant,       tags: vagrant             }
-    - { role: virtualbox,    tags: virtualbox          }
-    - { role: postgres,      tags: postgres            }
-    - { role: plex,          tags: plex                }
-    - { role: docker,        tags: docker              }
-    - { role: alfred,        tags: alfred,        when: ansible_distribution == 'MacOSX' }
-#   - { role: boom,          tags: boom,          when: ansible_distribution == 'MacOSX' }
-    - { role: caffeine,      tags: caffeine,      when: ansible_distribution == 'MacOSX' }
-    - { role: cloak,         tags: cloak,         when: ansible_distribution == 'MacOSX' }
-    - { role: google-chrome, tags: google-chrome, when: ansible_distribution == 'MacOSX' }
-    - { role: google-drive,  tags: google-drive,  when: ansible_distribution == 'MacOSX' }
-    - { role: dropbox,       tags: dropbox,       when: ansible_distribution == 'MacOSX' }
-    - { role: evernote,      tags: evernote,      when: ansible_distribution == 'MacOSX' }
-    - { role: flux,          tags: flux,          when: ansible_distribution == 'MacOSX' }
-    - { role: iterm2,        tags: iterm2,        when: ansible_distribution == 'MacOSX' }
-    - { role: onepassword,   tags: onepassword,   when: ansible_distribution == 'MacOSX' }
-    - { role: macvim,        tags: macvim,        when: ansible_distribution == 'MacOSX' }
-    - { role: omnifocus,     tags: omnifocus,     when: ansible_distribution == 'MacOSX' }
-    - { role: slack,         tags: slack,         when: ansible_distribution == 'MacOSX' }
-    - { role: sizeup,        tags: sizeup,        when: ansible_distribution == 'MacOSX' }
-    - { role: steam,         tags: steam,         when: ansible_distribution == 'MacOSX' }
-    - { role: terminal,      tags: terminal,      when: ansible_distribution == 'MacOSX' }
-    - { role: tunnelblick,   tags: tunnelblick,   when: ansible_distribution == 'MacOSX' }
-    - { role: p4merge,       tags: p4merge,       when: ansible_distribution == 'MacOSX' }
-    - { role: trackpad,      tags: trackpad,      when: ansible_distribution == 'MacOSX' }
-    - { role: dock,          tags: dock,          when: ansible_distribution == 'MacOSX' }
-    - { role: finder,        tags: finder,        when: ansible_distribution == 'MacOSX' }
+#    - { role: ansible,       tags: ansible             }
+#    - { role: curl,          tags: curl                }
+#    - { role: wget,          tags: wget                }
+#    - { role: ssh,           tags: ssh                 }
+#    - { role: sed,           tags: sed                 }
+#    - { role: gpg,           tags: gpg                 }
+#    - { role: git,           tags: git                 }
+#    - { role: gist,          tags: gist                }
+#    - { role: ghi,           tags: ghi                 }
+#    - { role: homebrew,      tags: homebrew            }
+#    - { role: hub,           tags: hub                 }
+#    - { role: keybase,       tags: keybase             }
+#    - { role: vim,           tags: vim                 }
+#    - { role: tmux,          tags: tmux                }
+#    - { role: rackspace,     tags: rackspace           }
+#    - { role: weechat,       tags: weechat             }
+#    - { role: go,            tags: [go,     languages] }
+#    - { role: ruby,          tags: [ruby,   languages] }
+#    - { role: python,        tags: [python, languages] }
+#    - { role: perl,          tags: [perl,   languages] }
+#    - { role: vagrant,       tags: vagrant             }
+#    - { role: virtualbox,    tags: virtualbox          }
+#    - { role: postgres,      tags: postgres            }
+#    - { role: plex,          tags: plex                }
+#    - { role: docker,        tags: docker              }
+#    - { role: alfred,        tags: alfred,        when: ansible_distribution == 'MacOSX' }
+#    - { role: boom,          tags: boom,          when: ansible_distribution == 'MacOSX' }
+#    - { role: caffeine,      tags: caffeine,      when: ansible_distribution == 'MacOSX' }
+#    - { role: cloak,         tags: cloak,         when: ansible_distribution == 'MacOSX' }
+#    - { role: google-chrome, tags: google-chrome, when: ansible_distribution == 'MacOSX' }
+#    - { role: google-drive,  tags: google-drive,  when: ansible_distribution == 'MacOSX' }
+#    - { role: dropbox,       tags: dropbox,       when: ansible_distribution == 'MacOSX' }
+#    - { role: evernote,      tags: evernote,      when: ansible_distribution == 'MacOSX' }
+#    - { role: flux,          tags: flux,          when: ansible_distribution == 'MacOSX' }
+#    - { role: iterm2,        tags: iterm2,        when: ansible_distribution == 'MacOSX' }
+#    - { role: onepassword,   tags: onepassword,   when: ansible_distribution == 'MacOSX' }
+#    - { role: macvim,        tags: macvim,        when: ansible_distribution == 'MacOSX' }
+#    - { role: omnifocus,     tags: omnifocus,     when: ansible_distribution == 'MacOSX' }
+#    - { role: slack,         tags: slack,         when: ansible_distribution == 'MacOSX' }
+#    - { role: sizeup,        tags: sizeup,        when: ansible_distribution == 'MacOSX' }
+#    - { role: steam,         tags: steam,         when: ansible_distribution == 'MacOSX' }
+#    - { role: terminal,      tags: terminal,      when: ansible_distribution == 'MacOSX' }
+#    - { role: tunnelblick,   tags: tunnelblick,   when: ansible_distribution == 'MacOSX' }
+#    - { role: p4merge,       tags: p4merge,       when: ansible_distribution == 'MacOSX' }
+#    - { role: trackpad,      tags: trackpad,      when: ansible_distribution == 'MacOSX' }
+#    - { role: dock,          tags: dock,          when: ansible_distribution == 'MacOSX' }
+#    - { role: finder,        tags: finder,        when: ansible_distribution == 'MacOSX' }
