@@ -1,5 +1,5 @@
-hub
-===
+ansible
+=======
 
 Configure and update the `ansible` command line tool.
 
@@ -12,12 +12,7 @@ Role Variables
 --------------
 
     ansible_required_packages:
-      macosx:
-        - ansible
-      fedora:
-        - ansible
-      ubuntu:
-        - ansible
+      - ansible
 
 Dependencies
 ------------

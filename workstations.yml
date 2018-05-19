@@ -6,7 +6,7 @@
 #    - { role: system76,       tags: system76, when: ansible_product_version is defined and ansible_product_version == "galp2", system76_desktop_background_file: "System76-Robot-by_Kate_Hazen_of_System76.png" }
 #    - { role: system76-popos, tags: system76-popos, when: ansible_product_version is defined and ansible_product_version == "galp2" }
     - { role: ack,           tags: ack                 }
-#    - { role: ansible,       tags: ansible             }
+    - { role: ansible,       tags: ansible             }
 #    - { role: curl,          tags: curl                }
 #    - { role: wget,          tags: wget                }
 #    - { role: ssh,           tags: ssh                 }

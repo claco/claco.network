@@ -1,2 +1,4 @@
 ---
 ansible_required_packages:
+  - ansible
+  - ansible-lint
