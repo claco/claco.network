@@ -1,2 +1,3 @@
 ---
 curl_required_packages:
+  - curl

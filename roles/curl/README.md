@@ -1,5 +1,5 @@
-hub
-===
+curl
+===+
 
 Install and configure the `curl` command line tool.
 
@@ -12,12 +12,7 @@ Role Variables
 --------------
 
     curl_required_packages:
-      macosx:
-        - curl
-      fedora:
-        - curl
-      ubuntu:
-        - curl
+      - curl
 
 Dependencies
 ------------

@@ -1,11 +1,16 @@
 ---
-- name: Install Required Packages | Homebrew
-  package: name={{ item }} state=latest
-  with_items: '{{ curl_required_packages[ansible_distribution | lower] | default([]) }}'
-  when: ansible_distribution == 'MacOSX'
+- name: Load Variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - files:
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}.yml"
+        - "{{ ansible_os_family | lower }}.yml"
+        - "main.yml"
+      paths:
+        - "vars"
 
-- name: Install Required Packages | Packages
-  package: name={{ item }} state=latest
-  become: yes
-  with_items: '{{ curl_required_packages[ansible_distribution | lower] | default([]) }}'
-  when: ansible_distribution != 'MacOSX'
+- name: Include Tasks
+  include_tasks: "{{ ansible_distribution | lower }}.yml"
