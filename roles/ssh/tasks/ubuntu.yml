@@ -1,0 +1,7 @@
+---
+- name: Install Required Packages
+  package:
+    name: "{{ item }}"
+    state: latest
+  become: true
+  with_items: "{{ ssh_required_packages }}"

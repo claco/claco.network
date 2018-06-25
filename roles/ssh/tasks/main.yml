@@ -1,39 +1,69 @@
 ---
-- name: Install Required Packages | Homebrew
-  package: name={{ item }} state=latest
-  with_items: '{{ ssh_required_packages[ansible_distribution | lower] | default([]) }}'
-  when: ansible_distribution == 'MacOSX'
+- name: Load Variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - files:
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}.yml"
+        - "{{ ansible_os_family | lower }}.yml"
+        - "main.yml"
+      paths:
+        - "vars"
 
-- name: Install Required Packages | Packages
-  package: name={{ item }} state=latest
-  become: yes
-  with_items: '{{ ssh_required_packages[ansible_distribution | lower] | default([]) }}'
-  when: ansible_distribution != 'MacOSX'
+- name: Include Tasks
+  include_tasks: "{{ ansible_distribution | lower }}.yml"
+
+- name: Create SSH Cache Directory
+  file:
+    path: "{{ ssh_cache_directory }}"
+    state: directory
+    mode: 0700
+  tags: ssh-config
 
 - name: Create SSH Directory
-  file: path={{ ssh_config_directory }} state=directory mode=0700
+  file:
+    path: "{{ ssh_config_directory }}"
+    state: directory
+    mode: 0700
   tags: ssh-config
 
 - name: Configure SSH
-  template: src=config.j2 dest={{ ssh_config_file }} mode=0600
+  template:
+    src: config.j2
+    dest: "{{ ssh_config_file }}"
+    mode: 0600
   tags: ssh-config
 
 - name: Configure Environment
-  template: src=environment.j2 dest={{ ssh_environment_file }} mode=0600
+  template:
+    src: environment.j2
+    dest: "{{ ssh_environment_file }}"
+    mode: 0600
   tags: ssh-config
 
 - name: Configure SSH Keypairs
-  copy: content={{ item.value }} dest={{ ssh_keys_directory }}/{{ item.key }} mode=0700
-  with_dict: '{{ ssh_keys }}'
+  copy:
+    content: "{{ item.value }}"
+    dest: "{{ ssh_keys_directory }}/{{ item.key }}"
+    mode: 0700
+  with_dict: "{{ ssh_keys }}"
   no_log: True
   tags: ssh-config
 
 - name: Configure Authorized Keys
-  copy: content={{ ssh_keys['id_rsa.pub'] }} dest={{ ssh_authorized_keys_file }} mode=0700
+  copy:
+    content: "{{ ssh_keys['id_rsa.pub'] }}"
+    dest: "{{ ssh_authorized_keys_file }}"
+    mode: 0700
   no_log: True
   tags: ssh-config
 
 - name: Configure Known Hosts
-  known_hosts: name={{ item }} path={{ ssh_known_hosts_file }} key="{{ lookup('pipe', 'ssh-keyscan -t rsa ' + item) }}"
-  with_items: '{{ ssh_known_hosts }}'
+  known_hosts:
+    name: "{{ item }}"
+    path: "{{ ssh_known_hosts_file }}"
+    key: "{{ lookup('pipe', 'ssh-keyscan -t rsa ' + item) }}"
+  with_items: "{{ ssh_known_hosts }}"
   tags: ssh-config, ssh-known-hosts

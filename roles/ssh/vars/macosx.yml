@@ -1,0 +1,4 @@
+---
+ssh_required_packages:
+  - ssh
+  - ssh-copy-id
