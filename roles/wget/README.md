@@ -1,5 +1,5 @@
-hub
-===
+wget
+===+
 
 Install and configure the `wget` command line tool.
 
@@ -12,12 +12,7 @@ Role Variables
 --------------
 
     wget_required_packages:
-      macosx:
-        - wget
-      fedora:
-        - wget
-      ubuntu:
-        - wget
+      - wget
 
 Dependencies
 ------------
@@ -29,7 +24,7 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: curl }
+         - { role: wget }
 
 License
 -------

@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Christopher H. Laco
-  description: Install and configure Wget
+  description: Install and configure Curl
   license: MIT
   min_ansible_version: 2.0
   platforms:
@@ -12,4 +12,4 @@ galaxy_info:
     - development
     - system
 dependencies:
-  - { role: homebrew, when: ansible_pkg_mgr == 'homebrew' }
+  - { role: homebrew, when: ansible_pkg_mgr == "homebrew" }

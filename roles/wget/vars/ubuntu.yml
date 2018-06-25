@@ -1,2 +1,3 @@
 ---
 wget_required_packages:
+  - wget
