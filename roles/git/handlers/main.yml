@@ -4,7 +4,7 @@
   args:
     chdir: '{{ git_config_directory }}'
   register: git_config_files
-  changed_when: False
+  changed_when: false
 
 - name: reconfigure git
   template: src=gitconfig.j2 dest={{ git_config_file }}

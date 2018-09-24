@@ -12,7 +12,7 @@
     domain: com.apple.dock
     key: autohide
     type: bool
-    value: True
+    value: true
   notify: Restart Dock
 
 - name: Dock | Set Delay
@@ -28,7 +28,7 @@
     domain: com.apple.dock
     key: hide-mirror
     type: bool
-    value: True
+    value: true
   notify: Restart Dock
 
 - name: Dock | Zoom On Hover
@@ -36,7 +36,7 @@
     domain: com.apple.dock
     key: magnification
     type: bool
-    value: True
+    value: true
   notify: Restart Dock
 
 - name: Dock | Minimize To Applications
@@ -44,5 +44,5 @@
     domain: com.apple.dock
     key: minimize-to-application
     type: bool
-    value: True
+    value: true
   notify: Restart Dock

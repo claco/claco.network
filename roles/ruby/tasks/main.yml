@@ -6,7 +6,7 @@
 
 - name: Install Required Packages | Packages
   package: name={{ item }} state=latest
-  become: yes
+  become: true
   with_items: '{{ ruby_required_packages[ansible_distribution | lower] | default([]) }}'
   when: ansible_distribution != 'MacOSX'
 
@@ -39,7 +39,7 @@
 - name: Load Installed Versions
   shell: "{{ rbenv_binary }} versions --bare"
   register: rbenv_installed_versions
-  changed_when: False
+  changed_when: false
   tags: ruby-cleanup
 
 - name: Remove Older Versions

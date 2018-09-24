@@ -6,6 +6,6 @@
 
 - name: Install Required Packages | Packages
   package: name={{ item }} state=latest
-  become: yes
+  become: true
   with_items: '{{ ack_required_packages[ansible_distribution | lower] | default([]) }}'
   when: ansible_distribution != 'MacOSX'

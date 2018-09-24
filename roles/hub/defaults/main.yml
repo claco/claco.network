@@ -2,7 +2,8 @@
 hub_bin_directory: '{{ ansible_env.HOME }}/bin'
 hub_config_directory: '{{ ansible_env.HOME }}/.config'
 hub_version: 2.2.3
-hub_package_url: https://github.com/github/hub/releases/download/v{{ hub_version }}/hub-linux-amd64-{{ hub_version }}.tgz
+hub_repository_url: https://github.com/github/hub
+hub_package_url: "{{ hub_repository_url }}/releases/download/v{{ hub_version }}/hub-linux-amd64-{{ hub_version }}.tgz"
 hub_user:
 hub_oauth_token:
 hub_protocol: https

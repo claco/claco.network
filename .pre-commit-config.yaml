@@ -1,0 +1,17 @@
+---
+- repo: https://github.com/adrienverge/yamllint.git
+  rev: v1.11.1
+  hooks:
+    - id: yamllint
+      always_run: true
+      args: [".", "-s"]
+
+      #- repo: https://github.com/willthames/ansible-lint.git
+      #  rev: v3.4.21
+      #  hooks:
+      #    - id: ansible-lint
+      #      always_run: true
+      #      language: python
+      #      files: \.(yaml|yml)$
+      #      args: ["\"./roles/*/*/*.yml\""]
+      #      verbose: true
